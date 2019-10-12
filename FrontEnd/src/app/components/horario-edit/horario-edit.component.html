@@ -1,0 +1,82 @@
+<div class="col-md-12">
+        <div class="card text-center">
+                <form>
+                        <h2> <label for="exampleInputEmail1">Actualizar Horario</label></h2>
+                </form>
+        
+        
+        </div>
+        </div>
+        
+    
+    
+    <div class="col-md-4 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <h3>{{accion}}</h3>
+                    </div>
+                    <div class="form-group">
+                            <h3>Horario de Inicio</h3>Hora
+                            <select id="hora" name="hora" [(ngModel)]="hora" class="selectpicker">
+                                    <option value="22" selected>22</option>
+                                    <option value="21">21</option><option value="20">20</option>
+                                    <option value="19">19</option><option value="18">18</option>
+                                    <option value="17">17</option><option value="16">16</option>
+                                    <option value="15">15</option><option value="14">14</option>
+                                    <option value="13">13</option><option value="12">12</option>
+                                    <option value="11">11</option><option value="10">10</option>
+                                    <option value="09">09</option><option value="08">08</option>
+                                    <option value="07">07</option>  </select>
+                                    Minuto  
+                            <select id="minuto" name="minuto" [(ngModel)]="minuto" class="selectpicker">
+                                            <option value="50" selected>50</option>
+                                            <option value="40">40</option><option value="30">30</option>
+                                            <option value="20">20</option><option value="10">10</option>
+                                            <option value="00">00</option>  </select>                                  
+                                                                    
+                    </div>
+    
+                    <div class="form-group">
+                            <h3>Horario Final</h3>Hora
+                            <select id="hora2" name="hora2" [(ngModel)]="hora2" class="selectpicker">
+                                    <option value="22" selected>22</option>
+                                    <option value="21">21</option><option value="20">20</option>
+                                    <option value="19">19</option><option value="18">18</option>
+                                    <option value="17">17</option><option value="16">16</option>
+                                    <option value="15">15</option><option value="14">14</option>
+                                    <option value="13">13</option><option value="12">12</option>
+                                    <option value="11">11</option><option value="10">10</option>
+                                    <option value="09">09</option><option value="08">08</option>
+                                    <option value="07">07</option>  </select>
+                                    Minuto  
+                            <select id="minuto2" name="minuto2" [(ngModel)]="minuto2" class="selectpicker">
+                                            <option value="50" selected>50</option>
+                                            <option value="40">40</option><option value="30">30</option>
+                                            <option value="20">20</option><option value="10">10</option>
+                                            <option value="00">00</option>  </select>                                  
+                                                                    
+                    </div>
+    
+                    <button class="btn btn-outline-warning btn-block" (click)="updateHorario()">
+                        Actualizar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+       <!-- Esta es una previsualizacion a lo que voy a guardar      -->
+    
+       <div class="col-md-4 offset-md-2">
+        <div class="card card-body text-center">
+            <h3>Vista previa</h3>
+            <p>Hora Inicial: {{hora== '' ? '00  ' : hora}}:{{minuto == '' ? '00 ' : minuto}}:00  Hrs</p>
+            <p>Hora Final: {{hora2== '' ? '00  ' : hora2}}:{{minuto2 == '' ? '00 ' : minuto2}}:00  Hrs</p>
+        </div>
+    </div>
+    
+    
+    

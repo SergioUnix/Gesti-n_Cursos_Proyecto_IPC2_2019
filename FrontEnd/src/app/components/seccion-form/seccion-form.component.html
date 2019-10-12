@@ -1,0 +1,101 @@
+<div class="col-md-12">
+        <div class="card text-center">
+                <form>
+                        <h2> <label for="exampleInputEmail1">Registrar Sección</label></h2>
+                </form>
+        
+        
+        </div>
+        </div>
+        
+    
+    
+    <div class="col-md-4 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <form  #formSeccion="ngForm" (ngSubmit)="onSeccion(formSeccion)">
+                        <div class="form-group">
+                                <h3>Crear Sección</h3>
+                            </div>
+
+                            <div class="alert alert-warning" role="alert" *ngIf="isError"> 
+                                Datos incorrectos
+                           </div>
+                           <div class="alert alert-success" role="alert" *ngIf="isExito">
+                            Guardado exitosamente
+                          </div>
+
+
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="seccion.nombre" 
+                                #nombre="ngModel" required  minlength="1"  maxlength="40" 
+                                name="seccion" placeholder="Seccion" class="form-control" autofocus required>
+                            </div>
+                            <div class="alert alert-danger" role="alert" *ngIf="nombre.touched && !nombre.valid">
+                                <div *ngIf="nombre.errors.required"><h6>Campo Obligatorio</h6></div>
+                                <div *ngIf="nombre.errors.minlength"><h6>Campo tiene menos de 1 caracteres</h6></div>
+                                
+                            </div>
+        
+    
+                    <button type = "submit" class="btn btn-success btn-block" >
+                        Guardar
+    
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+       <!-- Esta es una previsualizacion a lo que voy a guardar      -->
+    
+       <div class="col-md-4 offset-md-2">
+        <div class="card card-body text-center">
+            <h3>Vista previa</h3>
+            <p>{{seccion.nombre == '' ? 'Nombre de la Sección  ' : seccion.nombre}}</p>
+        </div>
+    </div>
+    
+    
+    
+        
+    <div class="col-md-12">
+    <div class="card text-center">
+            <form>
+                    <h2> <label for="exampleInputEmail1">Secciones Guardadas</label></h2>
+            </form>
+    
+    
+    </div>
+    </div>
+    
+    
+
+
+    
+
+<div class="col-md-4" *ngFor="let seccion of secciones">
+        <div class="card text-center">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <i class="far fa-clock"></i>codigo: {{seccion.cod_seccion}}
+                <button class="btn btn-danger" (click)="deleteSeccion(seccion.cod_seccion)">
+                    Eliminar
+                </button>
+            </div>
+            <img [src]="" class="card-img-top">
+    
+            <div class="card-body">
+                <h4>
+                    <p>Nombre de Sección : {{seccion.nombre}}</p>
+                </h4>
+                <button class="btn btn-outline-success" [routerLink]="['/seccion/edit', seccion.cod_seccion]">
+                        Editar
+                    </button>
+    
+            </div>
+        </div>
+    
+    </div>
+    
+    

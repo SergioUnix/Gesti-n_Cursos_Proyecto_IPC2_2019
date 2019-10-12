@@ -1,0 +1,43 @@
+<div class="col-md-12">
+        <div class="card text-center">
+                <form>
+                        <h2> <label for="exampleInputEmail1">Editar Sección</label></h2>
+                </form>
+        
+        
+        </div>
+        </div>
+        
+    
+    
+    <div class="col-md-4 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <form>
+                        <div class="form-group">
+                                <h3>Ingresar Nombre de Sección</h3>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="seccion.nombre" name="seccion" placeholder="Seccion" class="form-control" autofocus required>
+                            </div>
+        
+    
+                    <button class="btn btn-success btn-block" (click)="updateSeccion()">
+                        Actualizar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+       <!-- Esta es una previsualizacion a lo que voy a guardar      -->
+    
+       <div class="col-md-4 offset-md-2">
+        <div class="card card-body text-center">
+            <h3>Vista previa</h3>
+            <p>{{seccion.nombre == '' ? 'Nombre de la Sección  ' : seccion.nombre}}</p>
+        </div>
+    </div>
+    
+    

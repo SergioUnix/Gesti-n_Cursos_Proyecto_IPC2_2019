@@ -1,0 +1,52 @@
+<main role="main" class="container my-auto">
+        <div class="row">
+            <div id="login" class="col-lg-4 offset-lg-4 col-md-6 offset-md-3
+                col-12">
+                <h2 class="text-center"><i class="fas fa-chalkboard-teacher"></i>    Registro de Auxiliar</h2>
+                
+
+                <form>
+                    <div class="form-group">
+                            <label for="usuario.apellido">Elegir Tipo</label>
+                        <select id="tipo" name="tipo" [(ngModel)]="usuario.cod_rol_fk" class="form-control">
+                            <option value="2" selected>Auxiliar</option>
+                            <option value="3" >Estudiante</option>
+                        </select>  
+                        
+                    </div> 
+                    <div class="form-group">
+                        <label for="usuario.nombre">Nombre</label>
+                        <input id="nombre" name="nombre"
+                            class="form-control" type="text"
+                            placeholder="nombre" [(ngModel)]="usuario.nombre" autocomplete="off" autofocus required>
+                    </div> 
+                    <div class="form-group">
+                            <label for="carne">Carnet</label>
+                            <input id="carne" name="carne"
+                            class="form-control" type="text"
+                            placeholder="Carnet" [(ngModel)]="usuario.carne" autocomplete="off" required>
+                    </div> 
+                    <div class="form-group">
+                        <label for="Correo">Correo</label>
+                        <input id="correo" name="correo"
+                            class="form-control" type="text"
+                            placeholder="Correo" [(ngModel)]="usuario.correo" autocomplete="off" required>
+                    </div>                    
+                    <div class="form-group">
+                        <label for="palabraSecreta">Contraseña</label>
+                        <input id="palabraSecreta" name="palabraSecreta"
+                            class="form-control" type="text"
+                            placeholder="Contraseña" [(ngModel)]="usuario.pasword" autocomplete="off" >
+
+                    </div>
+                    <button  class="btn btn-outline-warning btn-block"(click)="updateUsuario()" >
+                        Actualizar
+                    </button>
+                    <br>
+                   
+                </form>
+            </div>
+        </div>
+    </main>
+
+
