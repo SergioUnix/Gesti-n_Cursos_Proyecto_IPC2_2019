@@ -11,10 +11,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const pool = require('../database');
 class Asig_auxiliarController {
-    // Obtengo una lista de los productos disponibles
+    // Obtengo una lista 
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const arreglo = yield pool.query("SELECT * FROM asignacion_auxiliar");
+            const arreglo = yield pool.query("SELECT cod_asignacion_auxiliar, semestre, año as anio, fecha_limite, cod_usuario_fk, cod_curso_fk, usuario.nombre as auxiliar,curso.nombre as curso, seccion.nombre as seccion, horario.hora_inicio, horario.hora_final FROM asignacion_auxiliar INNER JOIN usuario ON cod_usuario_fk =cod_usuario inner join curso on cod_curso=cod_curso_fk inner Join seccion ON cod_seccion=cod_seccion_fk    inner join horario On cod_horario = cod_horario_fk;");
             res.json(arreglo);
         });
     }
@@ -50,6 +50,21 @@ class Asig_auxiliarController {
             const { id } = req.params;
             yield pool.query('UPDATE asignacion_auxiliar set ? WHERE  cod_asignacion_auxiliar=?', [req.body, id]);
             res.json({ massage: 'Asignacion_auxiliar se ha actualizado' });
+        });
+    }
+    // Devuelvo el codigo de la ultima asignación_estudiante creada dado el codigo cod_usuario_fk
+    ultimoRegistro(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const ultimoregistro = yield pool.query('select cod_asignacion_auxiliar from asignacion_auxiliar  where cod_usuario_fk=? order by cod_asignacion_auxiliar desc limit 1', [id]);
+            res.json(ultimoregistro[0]);
+        });
+    }
+    // Creo Foro despues de haber asignado al auxiliar al curso   
+    createForo(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield pool.query('INSERT INTO foro set ?', [req.body]);
+            res.json({ message: 'Foro creado automaticamente' });
         });
     }
 }

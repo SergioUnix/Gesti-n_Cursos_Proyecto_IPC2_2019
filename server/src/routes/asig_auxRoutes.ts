@@ -16,7 +16,10 @@ import {asig_auxiliarController} from '../controllers/asig_auxController';
         this.router.put('/:id', asig_auxiliarController.update);  //actualizo
         this.router.delete('/:id', asig_auxiliarController.delete);  // Elimino uno
         
-        
+        this.router.get('/ultima/:id', asig_auxiliarController.ultimoRegistro); /// obtendo todos 
+        this.router.post('/foro_despues_asig/foro', asig_auxiliarController.createForo);  // creo Foro una vez realizada la asignacion_auxiliar
+
+
     }
 }
 

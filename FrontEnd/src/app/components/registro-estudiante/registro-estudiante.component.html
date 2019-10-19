@@ -1,0 +1,104 @@
+<main role="main" class="container my-auto">
+    <div class="row">
+        <div id="login" class="col-lg-4 offset-lg-4 col-md-6 offset-md-3
+            col-12">
+            <h2 class="text-center">   Registro de Estudiante</h2>
+            <img class="img-fluid mx-auto d-block rounded"
+            src="../../../assets/registro.png" />
+            
+                   <div class="alert alert-warning" role="alert" *ngIf="isError"> 
+                     Faltan campos por llenar
+                    </div>
+                    <div class="alert alert-success" role="alert" *ngIf="isExito">
+                     Guardado exitosamente
+                    </div>
+                    <div class="alert alert-success" role="alert" *ngIf="isErrorGuardar">
+                        No se Guardo
+                       </div>                          
+
+            <form #formEstudiante="ngForm" (ngSubmit)="onEstudiante(formEstudiante)">
+                <div class="form-group">
+                        <label for="usuario.cod_rol_fk">Elegir Tipo</label>       
+                <select id="tipo" name="tipo" [(ngModel)]="usuario.cod_rol_fk" class="form-control"
+                #tipo="ngModel"  required  >
+                <option value="0" disabled selected>Elegir Tipo</option>
+                        <option value="3" selected>Estudiante</option>
+                </select>                          
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="tipo.touched && !tipo.valid">
+                    <div *ngIf="tipo.errors.required"><h6>Campo Obligatorio</h6></div>
+                  
+                    
+                </div> 
+
+
+
+                <div class="form-group">
+                    <label for="usuario.nombre">Nombre</label>
+                    <input id="nombre" name="nombre"
+                        class="form-control" type="text"placeholder="nombre" [(ngModel)]="usuario.nombre" autocomplete="off"
+                          required    #nombre="ngModel" required  minlength="1"  maxlength="40" >
+                        <div class="alert alert-danger" role="alert" *ngIf="nombre.touched && !nombre.valid">
+                            <div *ngIf="nombre.errors.required"><h6>Campo Obligatorio</h6></div>
+                            <div *ngIf="nombre.errors.minlength"><h6>Campo tiene menos de 1 caracteres</h6></div>
+                            
+                        </div>
+                </div> 
+                <div class="form-group">
+                        <label for="carne">Carnet</label>
+                        <input id="carne" name="carne"class="form-control" type="text"placeholder="Carnet"
+                         [(ngModel)]="usuario.carne" autocomplete="off" required
+                         #carne="ngModel"  minlength="1"  maxlength="40" >
+                                    <div class="alert alert-danger" role="alert" *ngIf="carne.touched && !carne.valid">
+                                     <div *ngIf="carne.errors.required"><h6>Campo Obligatorio</h6></div>
+                                     <div *ngIf="carne.errors.minlength"><h6>Campo tiene menos de 1 caracteres</h6></div>
+                                     </div>
+                </div> 
+
+
+
+                <div class="form-group">
+                    <label for="Correo">Correo</label>
+                    <input id="correo" name="correo"class="form-control" type="email"placeholder="email@example.com" [(ngModel)]="usuario.correo"
+                    autocomplete="off" required  #correo="ngModel"  minlength="1"  maxlength="40"  >
+                        <div class="alert alert-danger" role="alert" *ngIf="correo.touched && !correo.valid">
+                        <div *ngIf="correo.errors.required"><h6>Campo Obligatorio</h6></div>
+                        <div *ngIf="correo.errors.minlength"><h6>Campo tiene menos de 1 caracteres</h6></div>
+                        </div>
+                </div>                    
+
+
+
+
+
+                <div class="form-group">
+                    <label for="palabraSecreta">Contraseña</label>
+                    <input id="palabraSecreta" name="palabraSecreta" class="form-control" type="text" placeholder="Contraseña" 
+                        [(ngModel)]="usuario.pasword" autocomplete="off"  required 
+                        #pass="ngModel"  minlength="1"  maxlength="40">
+                        <div class="alert alert-danger" role="alert" *ngIf="pass.touched && !pass.valid">
+                            <div *ngIf="pass.errors.required"><h6>Campo Obligatorio</h6></div>
+                            <div *ngIf="pass.errors.minlength"><h6>Campo tiene menos de 1 caracteres</h6></div>
+                            </div>
+                </div>
+                <button  type="submit" class="btn btn-success btn-block" >
+                    Registrar
+                </button>
+                <br>
+               
+            </form>
+        </div>
+    </div>
+</main>
+
+
+
+
+
+
+
+
+
+        
+        
+        

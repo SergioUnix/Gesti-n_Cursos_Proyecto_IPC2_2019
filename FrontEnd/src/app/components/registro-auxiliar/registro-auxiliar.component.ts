@@ -14,7 +14,7 @@ export class RegistroAuxiliarComponent implements OnInit {
   usuarios: any=[];
   public isError=false; 
   public isExito=false; 
-
+  public isErrorGuardar=false;
   
   usuario: Usuario ={
     cod_usuario: 0,
@@ -30,8 +30,8 @@ export class RegistroAuxiliarComponent implements OnInit {
 
 
   ngOnInit() {
-        //metodo que verifica si hay usuario logueado
-        this.loginExist();
+   //metodo que verifica si hay usuario logueado
+   this.loginExist();
    ///Obtengo los usuarios Auxiliares
    this.getUsuarios_Aux();
 
@@ -41,20 +41,24 @@ export class RegistroAuxiliarComponent implements OnInit {
 
 
 ///manejar el form y alertas
-  
+
+Visualizar_ErrorGuardar(){
+  this.isErrorGuardar=true; 
+  setTimeout(( ) =>{this.isErrorGuardar= false;}   ,   3000);
+}
 Visualizar_Exito(){
   this.isExito=true; 
-  setTimeout(( ) =>{this.isExito= false;}   ,   4000);
+  setTimeout(( ) =>{this.isExito= false;}   ,   3000);
 }
 
 
 Visualizar_Error(){
   this.isError=true; 
-  setTimeout(( ) =>{this.isError= false;}   ,   4000);
+  setTimeout(( ) =>{this.isError= false;}   ,   3000);
 }
  
 
-onAuxiliar(form:NgForm){
+ onAuxiliar(form:NgForm){
   // console.log( form);
  if(form.valid){
  this.saveUsuario();
@@ -80,8 +84,9 @@ onAuxiliar(form:NgForm){
       this.getUsuarios_Aux();
       this.Visualizar_Exito();
       },
-      err=> console.error(err)
-  
+      err=>{ console.error(err);
+      this.Visualizar_ErrorGuardar();
+      }
     ) 
   
   

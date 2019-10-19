@@ -16,8 +16,9 @@ import {cursosController} from '../controllers/cursosController';
         this.router.put('/:id', cursosController.update);  //actualizo
         this.router.delete('/:id', cursosController.delete);  // Elimino uno
         
-        this.router.get('/disponibles', cursosController.listDisponibles); /// obtendo los Disponibles
-        
+        this.router.get('/disponibles/dis', cursosController.listDisponibles); /// obtendo los Disponibles
+        this.router.put('/Disponi/:id', cursosController.updateDis);  //actualizo
+        this.router.put('/Ocupado/Ocu/:id', cursosController.updateOcup);  //actualizo
     }
 }
 

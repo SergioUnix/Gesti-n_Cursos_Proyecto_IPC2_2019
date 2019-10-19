@@ -29,7 +29,8 @@ class UsuariosController{
     public async create(req: Request, res: Response ){
     //console.log(req.body);
     await pool.query('INSERT INTO usuario set ?', [req.body]);
-    res.json({message: 'Usuario Guardado'});    
+    res.json({message: 'Usuario Guardado'});  
+
     }
     // Elimino
     public delete(req: Request, res: Response ){

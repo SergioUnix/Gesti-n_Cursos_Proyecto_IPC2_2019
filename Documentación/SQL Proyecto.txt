@@ -29,7 +29,7 @@ CREATE TABLE usuario (
   CONSTRAINT `fk_Usuario_Rol` FOREIGN KEY (`cod_rol_fk`) REFERENCES rol (`cod_rol`)
   );
 INSERT INTO usuario(`nombre`,`carne`,`correo`,`pasword`,`cod_rol_fk`) VALUES ('Sergio',201020252,'SergioUnix@gmail.com',1234,1),
-('Made',201020,'MadeLor@gmail.com',1234,2),  ('Alejandro',2018,'Alejandro@gmail.com',12345,3),('Vero',201478,'Vero@gmail.com',12345,3),
+('Made',201020,'MadeLor@gmail.com',1234,2), ('Vero',201020,'Vero@gmail.com',123,2), ('Sergio',20102,'Sergio@gmail.com',1234,2),('Alejandro',2018,'Alejandro@gmail.com',12345,3),('Michi',201478,'Michi@gmail.com',12345,3),
 ('Cesar',2044,'Cesar@gmail.com',12345,3),('Teresa',204718,'Teresa@gmail.com',12345,3),('Fernando',209918,'Fernando@gmail.com',12345,3);
 
 -- -----------------------------------------------------
@@ -58,14 +58,14 @@ INSERT INTO seccion(`nombre`) values('A'),('B'),('C'),('D'),('E'),('F');
 -- -----------------------------------------------------
 CREATE TABLE curso (
   `cod_curso` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NULL,
+  `nombre` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(45) NULL,
   `estado` varchar(20)  default 'Disponible',
-  `cod_horario_fk` INT NOT NULL,
-  `cod_seccion_fk` INT NOT NULL,
+  `cod_horario_fk` INT  NULL,
+  `cod_seccion_fk` INT  NULL,
   PRIMARY KEY (`cod_curso`),
-  CONSTRAINT `fk_Curso_horario1` FOREIGN KEY (`cod_horario_fk`) REFERENCES horario (`cod_horario`),
-  CONSTRAINT `fk_Curso_Seccion1` FOREIGN KEY (`cod_seccion_fk`) REFERENCES seccion (`cod_seccion`));
+  CONSTRAINT `fk_Curso_horario1` FOREIGN KEY (`cod_horario_fk`) REFERENCES horario (`cod_horario`) ON DELETE CASCADE,
+  CONSTRAINT `fk_Curso_Seccion1` FOREIGN KEY (`cod_seccion_fk`) REFERENCES seccion (`cod_seccion`) ON DELETE CASCADE);
   
 INSERT INTO `proyecto`.`curso` (`nombre`,`descripcion`,`cod_horario_fk`,`cod_seccion_fk`)
 VALUES('IPC2','texto de descripcion',1,1),('LFP','texto de descripcion',2,2),('Compi 1','texto de descripcion',3,3),('Mate 2','texto de descripcion',4,4);
@@ -101,7 +101,7 @@ CREATE TABLE asignacion_estudiante (
   FOREIGN KEY (`cod_usuario_fk`) REFERENCES usuario (`cod_usuario`));
 
 INSERT INTO `asignacion_estudiante`(`cod_asignacion_auxiliar_fk`,`cod_usuario_fk`)
-VALUES(1,3),(1,4),(1,5),(1,6);
+VALUES(1,5),(1,6),(1,7),(1,8);
 
 
 -- -----------------------------------------------------
@@ -109,7 +109,8 @@ VALUES(1,3),(1,4),(1,5),(1,6);
 -- -----------------------------------------------------
 CREATE TABLE evaluacion (
   `cod_evaluacion` INT NOT NULL AUTO_INCREMENT,
-  `estado` varchar(20) NOT NULL,
+  `nombre` varchar(20) NOT NULL,
+  `estado` varchar(20)  default 'Deshabilitada',
   `tipo_evaluacion` varchar(20) NOT NULL,
   `cod_asignacion_auxiliar_fk` INT NOT NULL,
   `usuario_fk_eva` INT NOT NULL,
@@ -119,6 +120,11 @@ CREATE TABLE evaluacion (
   CONSTRAINT `fk_evalua_usu` FOREIGN KEY (`usuario_fk_eva`)
 			REFERENCES usuario (`cod_usuario`) 
   );
+    INSERT INTO `proyecto`.`evaluacion`
+(`cod_evaluacion`,`nombre`,`estado`,`tipo_evaluacion`,`cod_asignacion_auxiliar_fk`,`usuario_fk_eva`)
+VALUES();
+
+
 
 -- -----------------------------------------------------
 -- Table pregunta
@@ -144,13 +150,18 @@ CREATE TABLE pregunta (
 CREATE TABLE foro (
   `cod_foro` INT NOT NULL AUTO_INCREMENT,
   `nombre` varchar(20) NOT NULL,
-  `descripcion` varchar(20) NOT NULL,
+  `descripcion` varchar(90) NOT NULL,
   `fecha` date NOT NULL,
   `hora_limite` Time NOT NULL,
   `cod_asignacion_auxiliar_fk` INT NOT NULL,
   PRIMARY KEY (`cod_foro`),
   CONSTRAINT `fk_Foro_Asignacion_auxiliar1` FOREIGN KEY (`cod_asignacion_auxiliar_fk`)
   REFERENCES asignacion_auxiliar (`cod_asignacion_auxiliar`));
+INSERT INTO `proyecto`.`foro`
+(`nombre`,`descripcion`,`fecha`,`hora_limite`,`cod_asignacion_auxiliar_fk`)
+VALUES('Foro curso','Diseñado ','2019-08-12','23:59:00',1);
+
+
 
 -- -----------------------------------------------------
 -- Table Publicacion
@@ -158,18 +169,23 @@ CREATE TABLE foro (
 CREATE TABLE publicacion(
   `cod_publicacion` INT NOT NULL AUTO_INCREMENT,
   `comentario` VARCHAR(250) NULL,
-  `Publicacion_cod_publicacion` INT NULL,
-  `Usuario_cod_usuario1` INT NOT NULL,
-  `Foro_cod_foro1` INT NOT NULL,
+  `ref_publi` INT NULL,
+  `creador_pu_usuario` INT  NULL,
+  `cod_foro_fk` INT  NULL,
   PRIMARY KEY (`cod_publicacion`),
-  CONSTRAINT `fk_Publicacion_Publicacion1`
-    FOREIGN KEY (`Publicacion_cod_publicacion`) REFERENCES publicacion (`cod_publicacion`),
-  CONSTRAINT `fk_Publicacion_Usuario1`
-    FOREIGN KEY (`Usuario_cod_usuario1`) REFERENCES usuario (`cod_usuario`),
-  CONSTRAINT `fk_Publicacion_Foro1`
-    FOREIGN KEY (`Foro_cod_foro1`) REFERENCES foro (`cod_foro`));
+  CONSTRAINT `fk_creo_pu_usuario`
+    FOREIGN KEY (`ref_publi`) REFERENCES publicacion (`cod_publicacion`),
+  CONSTRAINT `fk_resp_pu_usuario`
+    FOREIGN KEY (`creador_pu_usuario`) REFERENCES usuario (`cod_usuario`),
+  CONSTRAINT `fk_cod_foro_fk`
+    FOREIGN KEY (`cod_foro_fk`) REFERENCES foro (`cod_foro`));
+INSERT INTO `proyecto`.`publicacion`
+(`comentario`,`creador_pu_usuario`,`cod_foro_fk`)
+VALUES ('Primer publicación del usuario Cesar',7,1),('Segunda publicación del usuario Cesar',7,1);
 
-
+INSERT INTO `proyecto`.`publicacion`
+(`comentario`,`ref_publi`,`creador_pu_usuario`)
+VALUES ('Respuesta 1 de Aux',1,2), ('Respuesta 1 de Aux',2,2);
 
 -- -----------------------------------------------------
 -- Table Mensaje

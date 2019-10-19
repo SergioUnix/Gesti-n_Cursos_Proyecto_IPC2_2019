@@ -6,9 +6,9 @@ class Asig_auxiliarController{
     
   
     
-    // Obtengo una lista de los productos disponibles
+    // Obtengo una lista 
     public async list(req: Request, res: Response ){ 
-        const arreglo =await pool.query("SELECT * FROM asignacion_auxiliar");
+        const arreglo =await pool.query("SELECT cod_asignacion_auxiliar, semestre, año as anio, fecha_limite, cod_usuario_fk, cod_curso_fk, usuario.nombre as auxiliar,curso.nombre as curso, seccion.nombre as seccion, horario.hora_inicio, horario.hora_final FROM asignacion_auxiliar INNER JOIN usuario ON cod_usuario_fk =cod_usuario inner join curso on cod_curso=cod_curso_fk inner Join seccion ON cod_seccion=cod_seccion_fk    inner join horario On cod_horario = cod_horario_fk;");
         res.json(arreglo);  
         }
         //Obtengo solo uno
@@ -42,9 +42,18 @@ class Asig_auxiliarController{
         }
         
         
+      // Devuelvo el codigo de la ultima asignación_estudiante creada dado el codigo cod_usuario_fk
+    public async ultimoRegistro(req: Request, res: Response ): Promise<any>{    
+        const {id} =req.params;
+        const ultimoregistro =await pool.query('select cod_asignacion_auxiliar from asignacion_auxiliar  where cod_usuario_fk=? order by cod_asignacion_auxiliar desc limit 1',[id]);
+        res.json(ultimoregistro[0]);  
+    }
      
-     
-    
+        // Creo Foro despues de haber asignado al auxiliar al curso   
+        public async createForo(req: Request, res: Response ){
+            await pool.query('INSERT INTO foro set ?', [req.body]);
+            res.json({message: 'Foro creado automaticamente'});    
+            }
 
 }
 

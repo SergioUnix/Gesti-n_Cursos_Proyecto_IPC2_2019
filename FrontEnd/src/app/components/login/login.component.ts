@@ -41,7 +41,7 @@ public isError=false;
 
 Visualizar_Error(){
   this.isError=true; 
-  setTimeout(( ) =>{this.isError= false;}   ,   4000);
+  setTimeout(( ) =>{this.isError= false;}   ,   3000);
 }
 
 

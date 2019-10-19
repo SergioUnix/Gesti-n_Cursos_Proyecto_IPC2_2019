@@ -12,7 +12,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link"  *ngIf="true"><i class="far fa-address-card"></i> Add Proveedor</a>
+          <a class="nav-link"  *ngIf="true" routerLink="/asignar"><i class="far fa-address-card"></i> Asignación Curso</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -20,11 +20,11 @@
               <i class="fas fa-dice-d6"></i>  Gestión de Auxiliar
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" >Agregar</a>
+            <a class="dropdown-item" routerLink="/evaluacion">Crear Evaluación</a>
 
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" >Asociar Producto</a>
-
+            <a class="dropdown-item" >Crear notas</a>
+            <a class="dropdown-item" >Asistencia</a>
           </div>
         </li>
 
@@ -33,12 +33,14 @@
               <i class="fas fa-dice-d6"></i>  Gestión de Administrador
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" routerLink="/horario">Crear Horario</a>
-            <a class="dropdown-item" routerLink="/seccion">Crear Sección</a>
-            <a class="dropdown-item" routerLink="/auxiliar">Crear Auxiliar</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" >Asociar </a>
+            <a class="dropdown-item" routerLink="/horario">Gestión Horario</a>
+            <a class="dropdown-item" routerLink="/seccion">Gestión Sección</a>
+            <a class="dropdown-item" routerLink="/auxiliar">Gestión Auxiliar</a>
 
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/curso">Gestión Curso</a>
+            <a class="dropdown-item" routerLink="/asig_auxiliar">Asigno auxiliar</a>
+            <a class="dropdown-item" routerLink="">Visualizar cursos Asignados</a>
           </div>
         </li>
 

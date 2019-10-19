@@ -1,0 +1,77 @@
+
+
+<div class="col-md-12" *ngFor="let asig of foro">
+    <div class="card text-center">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <i class="fas fa-id-card-alt"></i>
+            <h3>Nombre: {{asig.nombre}}</h3><br>
+        </div>
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <h6>Fecha limite de publicación: {{asig.fecha | date: 'yyy-MM-dd'}}</h6>
+           
+           
+        </div>
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+               <h6>Hora limite de publicación: {{asig.hora_limite}}</h6>  
+            </div>
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <h6>Descripción: {{asig.descripcion}}</h6>
+            </div>
+
+
+
+
+            <div class="alert alert-warning" role="alert" *ngIf="isError">Faltan campos por llenar</div>
+            <div class="alert alert-success" role="alert" *ngIf="isExito">Guardado exitosamente</div>
+            <div class="alert alert-success" role="alert" *ngIf="isErrorGuardar">No se Guardo</div>
+
+
+
+        <form  #formPubli="ngForm" (ngSubmit)="onPublicar(formPubli)">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Crear Publicación</label>
+              <input id="nombre" name="nombre" class="form-control" type="text"placeholder="nombre" [(ngModel)]="publicacion.comentario"
+              required  autocomplete="off" #nombre="ngModel" required  minlength="1"  maxlength="250">
+              <small id="emailHelp" class="form-text text-muted">Escribe un comentario no mayor a 250 caracteres</small>
+                <div class="alert alert-danger" role="alert" *ngIf="nombre.touched && !nombre.valid">
+                    <div *ngIf="nombre.errors.required"><h6>Campo Obligatorio</h6></div>
+                    <div *ngIf="nombre.errors.minlength"><h6>Campo tiene menos de 1 caracteres</h6></div>
+                    
+                </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary btn-block">Publicar</button>
+          </form>
+
+
+        
+    </div>
+    <br>
+    <br>
+    <br>
+</div>
+
+
+
+
+<div class="col-md-12" *ngFor="let publi of pu_padres">
+    <div class="card text-center">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                  {{publi.rol}}: {{publi.nombre}} <i class="fas fa-sms"></i>
+
+        </div>
+        <img [src]="" class="card-img-top">
+
+        <div class="card-body">
+            <h4>
+                <p><i class="fas fa-arrow-right"></i> {{publi.comentario}}</p>
+            </h4>
+            <button class="btn btn-outline-success" [routerLink]="['/foro/publicacion', publi.cod_publicacion]">
+                    Comentar
+                </button>
+
+        </div>
+    </div>
+
+</div>

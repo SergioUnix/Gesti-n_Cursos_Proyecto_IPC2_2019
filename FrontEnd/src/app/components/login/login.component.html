@@ -6,7 +6,7 @@
             <h1 class="text-center"><span class="badge badge-pill badge-secondary">Bienvenidos</span></h1>
              
             <div class="alert alert-warning" role="alert" *ngIf="isError"> 
-                   Datos no correctos
+                   Ingresar todos los Campos
             </div>
             
             <img class="img-fluid mx-auto d-block rounded" src="http://www.wallpaperk.com/wallpapers/estudiante-de-universidad-11579.jpg" alt="">
@@ -17,7 +17,7 @@
                     <label for="correo">Correo</label>
                     <input id="correo"   name="correo_nombre"class="form-control" type="text"placeholder="Correo"
                        #correo="ngModel" required  minlength="4"  maxlength="40" 
-                         [(ngModel)]="usuario.correo" autocomplete="off" autofocus >
+                         [(ngModel)]="usuario.correo" autocomplete="off" >
                 </div>
                 <div class="alert alert-danger" role="alert" *ngIf="correo.touched && !correo.valid">
                     <div *ngIf="correo.errors.required"><h6>Ingrese Correo</h6></div>
@@ -51,7 +51,7 @@
                     Entrar
                 </button>
             <br>
-                <a routerLink="/registro" >Registrar Usuario</a>
+                <a routerLink="/estudiante" >Registrar Usuario</a>
             </div>
                 
             </form>

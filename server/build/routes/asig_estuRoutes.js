@@ -13,6 +13,9 @@ class Asig_estuRoutes {
         this.router.post('/', asig_estuController_1.asig_estudianteController.create); // creo uno
         this.router.put('/:id', asig_estuController_1.asig_estudianteController.update); //actualizo
         this.router.delete('/:id', asig_estuController_1.asig_estudianteController.delete); // Elimino uno
+        this.router.get('/existe/:asig/:id', asig_estuController_1.asig_estudianteController.exist); ///me dice si el estudiante ya se ha asignado un curso o No
+        //////obtengo todos los cursos asignados al estudiante
+        this.router.get('/usuario/:id', asig_estuController_1.asig_estudianteController.listCursos); /// obtendo todos cursos asignados dado un usuario
     }
 }
 const asig_estuRoutes = new Asig_estuRoutes();

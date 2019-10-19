@@ -1,1 +1,140 @@
-<p>curso-form works!</p>
+<main role="main" class="container my-auto">
+    <div class="row">
+        <div id="login" class="col-lg-4 offset-lg-4 col-md-6 offset-md-3
+            col-12">
+            <h2 class="text-center"><i class="fas fa-book-open"></i>  Registrar Curso</h2>
+
+
+            <div class="alert alert-warning" role="alert" *ngIf="isError">
+                Faltan campos por llenar
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="isExito">
+                Guardado exitosamente
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="isErrorGuardar">
+                No se Guardo
+            </div>
+
+            <form #formCurso="ngForm" (ngSubmit)="onCurso(formCurso)">
+
+
+
+
+                <div class="form-group">
+                    <label for="curso.nombre">Nombre</label>
+                    <input id="nombre" name="nombre" class="form-control" type="text" placeholder="nombre"
+                        [(ngModel)]="curso.nombre" autocomplete="off" required #nombre="ngModel" required minlength="1"
+                        maxlength="45">
+                    <div class="alert alert-danger" role="alert" *ngIf="nombre.touched && !nombre.valid">
+                        <div *ngIf="nombre.errors.required">
+                            <h6>Campo Obligatorio</h6>
+                        </div>
+                        <div *ngIf="nombre.errors.minlength">
+                            <h6>Campo tiene menos de 1 caracteres</h6>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="curso.descripcion">Descripción</label>
+                    <input id="descripcion" name="descripcion" class="form-control" type="text"
+                        placeholder="Descripción" [(ngModel)]="curso.descripcion" autocomplete="off" required
+                        #descripcion="ngModel" required minlength="1" maxlength="45">
+                    <div class="alert alert-danger" role="alert" *ngIf="descripcion.touched && !descripcion.valid">
+                        <div *ngIf="descripcion.errors.required">
+                            <h6>Campo Obligatorio</h6>
+                        </div>
+                        <div *ngIf="descripcion.errors.minlength">
+                            <h6>Campo tiene menos de 1 caracteres</h6>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <label for="curso.cod_horario_fk">Lista de Horarios</label>
+                    <select id="horario" name="horario" class="form-control" [(ngModel)]="curso.cod_horario_fk">
+                        <option *ngFor="let horario of horarios" [value]="horario.cod_horario" selected>
+                            {{horario.hora_inicio }}Hrs ----{{horario.hora_final}} Hrs</option>
+
+                    </select>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="curso.cod_seccion_fk">Lista de Secciones</label>
+                    <select id="seccion" name="seccion" class="form-control" [(ngModel)]="curso.cod_seccion_fk">
+                        <option *ngFor="let seccion of secciones" [value]="seccion.cod_seccion" selected>
+                            Cod: {{seccion.cod_seccion}}--{{seccion.nombre}}</option>
+
+                    </select>
+                </div>
+
+
+
+
+                <button type="submit" class="btn btn-success btn-block">
+                    Registrar
+                </button>
+                <br>
+              <br>
+              <br>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+
+
+
+
+
+
+
+<div class="col-md-12">
+    <div class="card text-center">
+        <form>
+            <h2> <label for="exampleInputEmail1">Cursos Guardados</label></h2>
+        </form>
+
+
+    </div>
+</div>
+
+
+
+
+
+<div class="col-md-4" *ngFor="let curso of cursos">
+    <div class="card text-center">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <i class="fas fa-laptop-code"></i> <h3> {{curso.nombre}}</h3>
+            <button class="btn btn-danger" (click)="deleteCurso(curso.cod_curso)">
+                Eliminar
+            </button>
+        </div>
+        <img [src]="" class="card-img-top">
+
+        <div class="card-body">
+            <h4>
+                <h5>Código: {{curso.cod_curso}}</h5>
+                <h5>Descripción :</h5> <h6>{{curso.descripcion}}</h6>
+                <h5>Estado : {{curso.estado}}</h5>
+                <h5> Hora Inicio: {{curso.hora_inicio}} Hrs</h5> 
+                <h5>Hora Final: {{curso.hora_final}} Hrs</h5>
+                <h5>Sección: {{curso.seccion}}</h5>
+            </h4>
+            <button class="btn btn-outline-success" [routerLink]="['/curso/edit', curso.cod_curso]">
+                Editar
+            </button>
+
+        </div>
+    </div>
+
+</div>

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { AsigEstuService} from 'src/app/servicios/asig-estu.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UsuariosService } from 'src/app/servicios/usuarios.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -10,17 +10,43 @@ import { Router } from '@angular/router';
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(private usuariosService: UsuariosService, private router:Router) { }
+  asig_cursos: any=[]
+
+  constructor(private asigestuService:AsigEstuService,private usuariosService:UsuariosService, private router: Router,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
         //metodo que verifica si hay usuario logueado
         this.loginExist();
-  }
+     /// metodo que obtiene los cursos asignados al usuario logueado
+     this.getCursos_asignados();
+  
+  
+
+
+
+      }
 
 
 
 
 
+
+
+
+
+
+
+
+///obtiene todas las asignaciones que se han hecho de auxiliares
+getCursos_asignados(){
+  let cod=this.usuariosService.getSesionCod();
+
+  this.asigestuService.getCursos_asignados(cod.toString()).subscribe(  /// 
+    res => {
+    this.asig_cursos= res;    ///aca almaceno la respuesta que me devuelve, y luego utilizarlo en la lista
+    },
+    err => console.error(err)
+    );}
 
 
 

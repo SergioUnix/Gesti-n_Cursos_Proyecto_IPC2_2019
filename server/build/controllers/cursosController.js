@@ -14,7 +14,7 @@ class CursosController {
     // Obtengo una lista cursos registrados
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const arreglo = yield pool.query("SELECT * FROM curso");
+            const arreglo = yield pool.query("select cod_curso, curso.nombre, descripcion, estado, cod_horario_fk, cod_seccion_fk , horario.hora_inicio, horario.hora_final, seccion.nombre as seccion FROM curso INNER JOIN horario ON cod_horario_fk = cod_horario INNer JOIN seccion ON cod_seccion_fk = cod_seccion");
             res.json(arreglo);
         });
     }
@@ -55,8 +55,24 @@ class CursosController {
     // Obtengo una lista de los cursos disponibles
     listDisponibles(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const arreglo = yield pool.query("SELECT * FROM curso where estado='Disponible' ");
+            const arreglo = yield pool.query("select cod_curso, curso.nombre, descripcion, estado, cod_horario_fk, cod_seccion_fk , horario.hora_inicio, horario.hora_final, seccion.nombre as seccion FROM curso INNER JOIN horario ON cod_horario_fk = cod_horario INNer JOIN seccion ON cod_seccion_fk = cod_seccion where estado='Disponible' ");
             res.json(arreglo);
+        });
+    }
+    // Funcion que cambia de esta un Curso de Disponible a Ocupado   
+    updateDis(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield pool.query("UPDATE curso set estado ='Disponible'  WHERE  cod_curso=?", [id]);
+            res.json({ massage: 'Estado disponible' });
+        });
+    }
+    // Funcion que cambia de esta un Curso de Disponible a Ocupado   
+    updateOcup(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield pool.query("UPDATE curso set estado ='Ocupado'  WHERE  cod_curso=?", [id]);
+            res.json({ massage: 'Estado Ocupado' });
         });
     }
 }

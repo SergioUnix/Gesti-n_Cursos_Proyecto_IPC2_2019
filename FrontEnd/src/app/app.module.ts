@@ -17,9 +17,23 @@ import { HorarioEditComponent } from './components/horario-edit/horario-edit.com
 import {HorariosService} from './servicios/horarios.service'
 import {UsuariosService} from './servicios/usuarios.service';
 import { SeccionService } from './servicios/seccion.service';
+import { CursosService } from './servicios/cursos.service';
+import { AsigAuxService } from './servicios/asig-aux.service';
+import { AsigEstuService } from './servicios/asig-estu.service';
+
+
+
 import { SeccionEditComponent } from './components/seccion-edit/seccion-edit.component';
 import { RegistroAuxiliarComponent } from './components/registro-auxiliar/registro-auxiliar.component';
 import { RegistroAuxiliarEditComponent } from './components/registro-auxiliar-edit/registro-auxiliar-edit.component';
+import { RegistroEstudianteComponent } from './components/registro-estudiante/registro-estudiante.component';
+import { CursoEditComponent } from './components/curso-edit/curso-edit.component';
+import { AsignacionAuxiliarComponent } from './components/asignacion-auxiliar/asignacion-auxiliar.component';
+import { AsignarComponent } from './components/asignar/asignar.component';
+import { ForoComponent } from './components/foro/foro.component';
+import { ActividadComponent } from './components/actividad/actividad.component';
+import { EvaluacionComponent } from './components/evaluacion/evaluacion.component';
+import { PublicaListComponent } from './components/publica-list/publica-list.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +47,15 @@ import { RegistroAuxiliarEditComponent } from './components/registro-auxiliar-ed
     HorarioEditComponent,
     SeccionEditComponent,
     RegistroAuxiliarComponent,
-    RegistroAuxiliarEditComponent
+    RegistroAuxiliarEditComponent,
+    RegistroEstudianteComponent,
+    CursoEditComponent,
+    AsignacionAuxiliarComponent,
+    AsignarComponent,
+    ForoComponent,
+    ActividadComponent,
+    EvaluacionComponent,
+    PublicaListComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +67,11 @@ import { RegistroAuxiliarEditComponent } from './components/registro-auxiliar-ed
   providers: [
     UsuariosService,  /// permite poder tener los metodos para pedir datos
     HorariosService,
-    SeccionService  
+    SeccionService,
+    CursosService,
+    AsigAuxService,
+    AsigEstuService
+
 
 
 

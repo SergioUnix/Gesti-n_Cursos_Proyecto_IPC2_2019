@@ -13,7 +13,9 @@ class CursosRoutes {
         this.router.post('/', cursosController_1.cursosController.create); // creo uno
         this.router.put('/:id', cursosController_1.cursosController.update); //actualizo
         this.router.delete('/:id', cursosController_1.cursosController.delete); // Elimino uno
-        this.router.get('/disponibles', cursosController_1.cursosController.listDisponibles); /// obtendo los Disponibles
+        this.router.get('/disponibles/dis', cursosController_1.cursosController.listDisponibles); /// obtendo los Disponibles
+        this.router.put('/Disponi/:id', cursosController_1.cursosController.updateDis); //actualizo
+        this.router.put('/Ocupado/Ocu/:id', cursosController_1.cursosController.updateOcup); //actualizo
     }
 }
 const cursosRoutes = new CursosRoutes();

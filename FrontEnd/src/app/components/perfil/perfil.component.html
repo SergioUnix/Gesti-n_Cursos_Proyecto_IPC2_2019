@@ -1,1 +1,47 @@
-<p>perfil works!</p>
+<div class="col-md-12">
+    <div class="card text-center">
+        <form>
+            <h2> <label for="exampleInputEmail1">Cursos Asignados</label></h2>
+        </form>
+
+
+    </div>
+</div>
+
+<br>
+
+
+
+<div class="col-md-12" *ngFor="let asig of asig_cursos">
+    <div class="card text-center">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <i class="fas fa-id-card-alt"></i>
+            <h3>{{asig.curso}} Seccion {{asig.seccion}}</h3>
+
+
+        </div>
+        <img [src]="" class="card-img-top">
+
+        <div class="card-body">
+            <h4>
+ 
+
+            </h4>
+            <a [routerLink]="['/foro', asig.cod_asignacion_auxiliar]" class="btn btn-info btn-block">
+                <i class="fas fa-hands-helping"></i> Ver Foro de curso
+            </a>
+            <a [routerLink]="['/evaluacion', asig.cod_asignacion_auxiliar]" class="btn btn-info btn-block">
+                <i class="fas fa-chart-line"></i> Ver Evaluaciones
+            </a>
+            <a [routerLink]="['/actividad', asig.cod_asignacion_auxiliar]" class="btn btn-info btn-block">
+                <i class="fas fa-basketball-ball"></i> Ver Actividades
+            </a>
+
+
+
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+</div>

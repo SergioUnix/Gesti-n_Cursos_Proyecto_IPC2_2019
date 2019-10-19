@@ -42,8 +42,29 @@ class Asig_estudianteController{
         }
         
         
+     ////existe asignacion para un usuario
+     public async exist(req: Request, res: Response ){ 
+        //const {id}=req.params;
+        const {asig}=req.params;
+        const {id}=req.params;
+        const usuarios = await pool.query("SELECT * FROM proyecto.asignacion_estudiante where cod_usuario_fk=? and cod_asignacion_auxiliar_fk=?", [id,asig]);
+        if(usuarios.length>0){
+            return res.json(usuarios[0]);
+        }else{
+        res.status(404).json({text:'El usuario no encontrado'});} 
+        }
      
-     
+
+         //Obtengo lista de cursos asignados de un estudiante
+         public async listCursos(req: Request, res: Response ): Promise<any>{    
+            const {id} =req.params;
+            const arreglo = await pool.query("SELECT cod_asignacion_estudiante, cod_asignacion_auxiliar,usuario.cod_usuario, usuario.nombre as estudiante, curso.nombre as curso, seccion.nombre as seccion FROM asignacion_estudiante INNER JOIN asignacion_auxiliar ON cod_asignacion_auxiliar =cod_asignacion_auxiliar_fk inner join usuario on usuario.cod_usuario=asignacion_estudiante.cod_usuario_fk inner Join curso ON curso.cod_curso=asignacion_auxiliar.cod_curso_fk inner join seccion On seccion.cod_seccion = curso.cod_seccion_fk where usuario.cod_usuario=?", [id]);     
+            if(arreglo.length>0){
+                return res.json(arreglo);
+            }else{
+            res.status(404).json({text:'la asignacion no existe '});}  
+            }
+               
     
 
 }

@@ -1,0 +1,45 @@
+    <div class="alert alert-success" role="alert" *ngIf="isExito">Se comento exitosamente</div>
+    <form #formPubli="ngForm" (ngSubmit)="onPublicar(formPubli)">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Crear Publicación</label>
+        <input id="nombre" name="nombre" class="form-control" type="text" placeholder="comentario"
+            [(ngModel)]="publicacion.comentario" required autocomplete="off" #nombre="ngModel" required minlength="1"
+            maxlength="250">
+        <small id="emailHelp" class="form-text text-muted">Escribe un comentario no mayor a 250 caracteres</small>
+        <div class="alert alert-danger" role="alert" *ngIf="nombre.touched && !nombre.valid">
+            <div *ngIf="nombre.errors.required">
+                <h6>Campo Obligatorio</h6>
+            </div>
+            <div *ngIf="nombre.errors.minlength">
+                <h6>Campo tiene menos de 1 caracteres</h6>
+            </div>
+
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Responder</button>
+</form>
+
+<br><br><br>
+
+
+    <div class="alert alert-warning" role="alert" *ngIf="isError2">Datos incompletos para publicar</div>
+    <div class="alert alert-warning" role="alert" *ngIf="isError">No hay Comentarios</div>
+
+    <div class="col-md-12" *ngFor="let publi of pu_hijos">
+        <div class="card text-center">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                {{publi.rol}}: {{publi.nombre}} <i class="fas fa-sms"></i>
+
+            </div>
+            <img [src]="" class="card-img-top">
+
+            <div class="card-body">
+                <h4>
+                    <p> {{publi.comentario}}</p>
+                </h4>
+
+
+            </div>
+        </div>
+
+    </div>
