@@ -14,6 +14,13 @@ class EvaluacionesRoutes {
         this.router.put('/:id', evaluacionesController_1.evaluacionesController.update); //actualizo
         this.router.delete('/:id', evaluacionesController_1.evaluacionesController.delete); // Elimino uno
         this.router.get('/asig/:id', evaluacionesController_1.evaluacionesController.getAsig); //obtengo las asignaciones que se han hecho a un auxiliar
+        this.router.get('/eva/tipo1/:cod', evaluacionesController_1.evaluacionesController.getEva_tipo1); //obtengo las asignaciones que se han hecho a un auxiliar
+        this.router.get('/eva/tipo2/aux/:cod', evaluacionesController_1.evaluacionesController.getEva_tipo2); //obtengo las asignaciones que se han hecho a un auxiliar
+        this.router.put('/estado/:id', evaluacionesController_1.evaluacionesController.updateEstado);
+        this.router.put('/estado/orden/:id', evaluacionesController_1.evaluacionesController.updateOrden);
+        this.router.post('/preguntas', evaluacionesController_1.evaluacionesController.createPreguntas); // creo uno
+        this.router.get('/preguntas/m/m/m/:id', evaluacionesController_1.evaluacionesController.getMultiples);
+        this.router.get('/preguntas/v/f/v/f/:id', evaluacionesController_1.evaluacionesController.getVerdadero);
     }
 }
 const evaluacionesRoutes = new EvaluacionesRoutes();

@@ -19,6 +19,17 @@ import {AsignarComponent} from './components/asignar/asignar.component'; //impor
 import {ForoComponent} from './components/foro/foro.component'; //importamos componente
 import {PublicaListComponent} from './components/publica-list/publica-list.component'; //importamos componente
 import {EvaluacionComponent} from './components/evaluacion/evaluacion.component'; //importamos componente
+import {PreguntaMultipleComponent} from './components/pregunta-multiple/pregunta-multiple.component'; //importamos componente
+import {PreguntaFvComponent} from './components/pregunta-fv/pregunta-fv.component'; //importamos componente
+import {ListaUsuariosComponent} from './components/lista-usuarios/lista-usuarios.component'; //importamos componente
+import {ListaUsuariosEditComponent} from './components/lista-usuarios-edit/lista-usuarios-edit.component'; //importamos componente
+import {ActividadComponent} from './components/actividad/actividad.component'; //importamos componente
+import {ActividadesVistaComponent} from './components/actividades-vista/actividades-vista.component'; //importamos componente
+import {AuxiliarCursosAsigComponent} from './components/auxiliar-cursos-asig/auxiliar-cursos-asig.component'; //importamos componente
+import {EvaluacionesVistaComponent} from './components/evaluaciones-vista/evaluaciones-vista.component'; //importamos componente
+
+
+
 
 
 
@@ -95,7 +106,49 @@ const routes: Routes = [
   {
     path: 'evaluacion',
     component: EvaluacionComponent
+  },
+  {
+    path: 'evaluacion/multiple/:id',
+    component: PreguntaMultipleComponent
+  },
+  {
+    path: 'evaluacion/verdadero/:id',
+    component: PreguntaFvComponent
+  },
+  {
+    path: 'lista_usuarios',
+    component: ListaUsuariosComponent
+  },
+  {
+    path: 'lista_usuarios/edit/:id',
+    component: ListaUsuariosEditComponent
+  },
+  {
+    path: 'auxiliar-cursos',
+    component: AuxiliarCursosAsigComponent
+  },
+  {
+    path: 'evaluaciones-vista/:id',
+    component: EvaluacionesVistaComponent
+  },
+  {
+    path: 'actividad',
+    component: ActividadComponent
+  },
+  {
+    path: 'actividades-vista/:id',
+    component: ActividadesVistaComponent 
   }
+
+
+
+
+ 
+
+
+
+
+
 
 
 

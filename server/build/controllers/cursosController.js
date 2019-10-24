@@ -75,5 +75,19 @@ class CursosController {
             res.json({ massage: 'Estado Ocupado' });
         });
     }
+    ////existe asignacion para un usuario
+    exist(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { curso } = req.params;
+            const { seccion } = req.params;
+            const usuarios = yield pool.query("Select * from proyecto.curso where nombre=? and cod_seccion_fk = ?", [curso, seccion]);
+            if (usuarios.length > 0) {
+                return res.json(usuarios[0]);
+            }
+            else {
+                res.status(404).json({ text: 'No se encontro el nombre con seccion igual' });
+            }
+        });
+    }
 }
 exports.cursosController = new CursosController();

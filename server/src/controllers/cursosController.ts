@@ -65,6 +65,20 @@ class CursosController{
         res.json({massage: 'Estado Ocupado'});
     }
 
+
+
+     ////existe asignacion para un usuario
+     public async exist(req: Request, res: Response ){ 
+        const {curso}=req.params;
+        const {seccion}=req.params;
+        const usuarios = await pool.query("Select * from proyecto.curso where nombre=? and cod_seccion_fk = ?", [curso,seccion]);
+        if(usuarios.length>0){
+            return res.json(usuarios[0]);
+        }else{
+        res.status(404).json({text:'No se encontro el nombre con seccion igual'});} 
+        }
+         
+
 }
 
 export const cursosController = new CursosController();

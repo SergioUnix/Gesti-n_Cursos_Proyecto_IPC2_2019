@@ -34,6 +34,13 @@ import { ForoComponent } from './components/foro/foro.component';
 import { ActividadComponent } from './components/actividad/actividad.component';
 import { EvaluacionComponent } from './components/evaluacion/evaluacion.component';
 import { PublicaListComponent } from './components/publica-list/publica-list.component';
+import { PreguntaMultipleComponent } from './components/pregunta-multiple/pregunta-multiple.component';
+import { PreguntaFvComponent } from './components/pregunta-fv/pregunta-fv.component';
+import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
+import { ListaUsuariosEditComponent } from './components/lista-usuarios-edit/lista-usuarios-edit.component';
+import { EvaluacionesVistaComponent } from './components/evaluaciones-vista/evaluaciones-vista.component';
+import { ActividadesVistaComponent } from './components/actividades-vista/actividades-vista.component';
+import { AuxiliarCursosAsigComponent } from './components/auxiliar-cursos-asig/auxiliar-cursos-asig.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +62,14 @@ import { PublicaListComponent } from './components/publica-list/publica-list.com
     ForoComponent,
     ActividadComponent,
     EvaluacionComponent,
-    PublicaListComponent
+    PublicaListComponent,
+    PreguntaMultipleComponent,
+    PreguntaFvComponent,
+    ListaUsuariosComponent,
+    ListaUsuariosEditComponent,
+    EvaluacionesVistaComponent,
+    ActividadesVistaComponent,
+    AuxiliarCursosAsigComponent
   ],
   imports: [
     BrowserModule,

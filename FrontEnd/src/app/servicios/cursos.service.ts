@@ -58,5 +58,13 @@ updateOcupado(id:string, u:string){
   }
 
 
+ //metodo para ver si hay asignacion en dicho curso del respectivo usuario
+ exist(curso: string, seccion:string ){
+  return this.http.get(`${this.API_URI}/cursos/validar/${curso}/${seccion}`);
+  }
+
+
+
+
 
 }

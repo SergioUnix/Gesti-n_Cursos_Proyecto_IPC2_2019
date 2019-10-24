@@ -1,103 +1,178 @@
 <main role="main" class="container my-auto">
-        <div class="row">
-            <div id="login" class="col-lg-4 offset-lg-4 col-md-6 offset-md-3
-                col-12">
-                <h2 class="text-center"><i class="fas fa-chalkboard-teacher"></i>    Registro de Evaluaciones</h2>
-                  
-                
-                       <div class="alert alert-warning" role="alert" *ngIf="isError"> 
-                         Faltan campos por llenar
-                        </div>
-                        <div class="alert alert-success" role="alert" *ngIf="isExito">
-                         Guardado exitosamente
-                        </div>
-                        <div class="alert alert-success" role="alert" *ngIf="isErrorGuardar">
-                            No se Guardo
-                           </div>                          
-
-                           <div class="form-group">
-                            <label for="evaluacion.cod_asignacion_auxiliar_fk">Elegir Curso para la evaluación</label>
-                            <select id="aux" name="aux" class="form-control" [(ngModel)]="evaluacion.cod_asignacion_auxiliar_fk">
-                                <option *ngFor="let curso of asignaciones" [value]="curso.cod_asignacion_auxiliar" selected>
-                                    {{curso.nombre }} -- Sec. {{curso.seccion}} </option>
-        
-                            </select>
-                        </div>
+    <div class="row">
+        <div id="login" class="col-lg-4 offset-lg-4 col-md-6 offset-md-3
+            col-12">
+            <h2 class="text-center"><i class="fab fa-elementor"></i> Registro de Evaluaciones</h2>
 
 
+            <div class="alert alert-warning" role="alert" *ngIf="isError">
+                Faltan campos por llenar
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="isExito">
+                Guardado exitosamente
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="isErrorGuardar">
+                No se Guardo
+            </div>
+            <form #formAsig="ngForm" (ngSubmit)="onEvaluacion(formAsig)">
 
-                    <div class="form-group">
-                        <label for="evaluacion.nombre">Nombre  de la Evaluación</label>
-                        <input id="nombre" name="nombre"
-                            class="form-control" type="text"placeholder="nombre" [(ngModel)]="evaluacion.nombre" autocomplete="off"
-                              required    #nombre="ngModel" required  minlength="1"  maxlength="40" >
-                            <div class="alert alert-danger" role="alert" *ngIf="nombre.touched && !nombre.valid">
-                                <div *ngIf="nombre.errors.required"><h6>Campo Obligatorio</h6></div>
-                                <div *ngIf="nombre.errors.minlength"><h6>Campo tiene menos de 1 caracteres</h6></div>
-                                
+
+                <div class="form-group">
+                    <label for="evaluacion.cod_asignacion_auxiliar_fk">De que curso desea crear evaluación ?</label>
+                    <select id="aux" name="aux" class="form-control" [(ngModel)]="evaluacion.cod_asignacion_auxiliar_fk"
+                    #curso="ngModel" required>
+                        <option *ngFor="let curso of asignaciones" [value]="curso.cod_asignacion_auxiliar" selected>
+                            {{curso.curso }} -- Sec. {{curso.seccion}} </option>
+
+                    </select>
+
+                    <div class="alert alert-danger" role="alert" *ngIf="curso.touched && !curso.valid">
+                            <div *ngIf="curso.errors.required">
+                                <h6>Campo Obligatorio</h6>
                             </div>
-                    </div> 
-
-                    <div class="form-group">
-                        <label for="evaluacion.estado">Nombre  de la Evaluación</label>
-                        <input id="nombre" name="nombre"
-                            class="form-control" type="text"placeholder="nombre" [(ngModel)]="evaluacion.estado" autocomplete="off"
-                              required    #nombre="ngModel" required  minlength="1"  maxlength="40" >
-                            <div class="alert alert-danger" role="alert" *ngIf="nombre.touched && !nombre.valid">
-                                <div *ngIf="nombre.errors.required"><h6>Campo Obligatorio</h6></div>
-                                <div *ngIf="nombre.errors.minlength"><h6>Campo tiene menos de 1 caracteres</h6></div>
-                                
-                            </div>
-                    </div> 
-
-
-
-
-
-                    <div class="form-group">
-                            <label for="carne">Numero de Identificación</label>
-                            <input id="carne" name="carne"class="form-control" type="text"placeholder="No. Identificación"
-                             [(ngModel)]="usuario.carne" autocomplete="off" required
-                             #carne="ngModel"  minlength="1"  maxlength="40" >
-                                        <div class="alert alert-danger" role="alert" *ngIf="carne.touched && !carne.valid">
-                                         <div *ngIf="carne.errors.required"><h6>Campo Obligatorio</h6></div>
-                                         <div *ngIf="carne.errors.minlength"><h6>Campo tiene menos de 1 caracteres</h6></div>
-                                         </div>
-                    </div> 
-
-
-
-                    <div class="form-group">
-                        <label for="Correo">Correo</label>
-                        <input id="correo" name="correo"class="form-control" type="email"placeholder="email@example.com" [(ngModel)]="usuario.correo"
-                        autocomplete="off" required  #correo="ngModel"  minlength="1"  maxlength="40"  >
-                            <div class="alert alert-danger" role="alert" *ngIf="correo.touched && !correo.valid">
-                            <div *ngIf="correo.errors.required"><h6>Campo Obligatorio</h6></div>
-                            <div *ngIf="correo.errors.minlength"><h6>Campo tiene menos de 1 caracteres</h6></div>
-                            </div>
-                    </div>                    
-
-
-
-
-
-                    <div class="form-group">
-                        <label for="palabraSecreta">Contraseña</label>
-                        <input id="palabraSecreta" name="palabraSecreta" class="form-control" type="text" placeholder="Contraseña" 
-                            [(ngModel)]="usuario.pasword" autocomplete="off"  required 
-                            #pass="ngModel"  minlength="1"  maxlength="40">
-                            <div class="alert alert-danger" role="alert" *ngIf="pass.touched && !pass.valid">
-                                <div *ngIf="pass.errors.required"><h6>Campo Obligatorio</h6></div>
-                                <div *ngIf="pass.errors.minlength"><h6>Campo tiene menos de 1 caracteres</h6></div>
-                                </div>
                     </div>
-                    <button  type="submit" class="btn btn-success btn-block" >
-                        Registrar
+    
+
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="evaluacion.nombre">Nombre de la Evaluación</label>
+                    <input id="nombre" name="nombre" class="form-control" type="text" placeholder="nombre"
+                        [(ngModel)]="evaluacion.nombre" autocomplete="off" required #nombre="ngModel" required
+                        minlength="1" maxlength="40">
+                    <div class="alert alert-danger" role="alert" *ngIf="nombre.touched && !nombre.valid">
+                        <div *ngIf="nombre.errors.required">
+                            <h6>Campo Obligatorio</h6>
+                        </div>
+                        <div *ngIf="nombre.errors.minlength">
+                            <h6>Campo tiene menos de 1 caracteres</h6>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="evaluacion.tipo_evaluacion">Tipo de Evaluación</label>
+                    <select id="tipo" name="tipo" [(ngModel)]="evaluacion.tipo_evaluacion" class="form-control"
+                        #tipo="ngModel" required>
+                        <option value="0" disabled selected>Elegir Tipo</option>
+                        <option value="Selección Múltiple" selected>Selección Múltiple</option>
+                        <option value="Verdadero/Falso" selected>Verdadero/Falso</option>
+                    </select>
+
+                <div class="alert alert-danger" role="alert" *ngIf="tipo.touched && !tipo.valid">
+                    <div *ngIf="tipo.errors.required">
+                        <h6>Campo Obligatorio</h6>
+                    </div>
+                </div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+                <button type="submit" class="btn btn-success btn-block">
+                    Crear evalucaión
+                </button>
+                <br>
+
+            </form>
+        </div>
+    </div>
+</main>
+
+<br><br><br><br><br><br>
+
+
+<div class="col-md-12">
+        <div class="card text-center">
+            <form>
+               <h2> <label for="exampleInputEmail1">Evaluaciones guardadas</label></h2>
+            </form>
+        </div>
+    </div>
+
+
+
+
+<div class="col-md-4" *ngFor="let eva of eva_tipo1">
+        <div class="card text-center">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <i class="fas fa-book-reader"></i>{{eva.nombre}}
+                <button class="btn btn-danger" (click)="deleteEvaluacion(eva.cod_evaluacion)">
+                    Eliminar
+                </button>
+            </div>
+            <img [src]="" class="card-img-top">
+    
+            <div class="card-body">
+                <h4>
+                    <p>Curso:  {{eva.curso}}</p>
+                    <p>Sección:  {{eva.seccion}}</p>
+                    <p>Estado : {{eva.estado}}</p>
+                    <p>Orden Preguntas: {{eva.orden}}</p>
+                    <p>Tipo Evaluación : {{eva.tipo_evaluacion}}</p>
+                </h4>
+
+                    <button class="btn btn-outline-warning" [routerLink]="['/evaluacion/verdadero', eva.cod_evaluacion]">
+                         Agregar Preguntas
+                        </button> <br>
+                        <button class="btn btn-outline-info" (click)="orden(eva.cod_evaluacion)">
+                                Cambiar Orden
+                         </button> 
+                         <br>
+                    <button class="btn btn-outline-danger"  (click)="estado(eva.cod_evaluacion)">
+                           Habilitar
                     </button>
-                    <br>
-                   
-                </form>
+    
             </div>
         </div>
-    </main>
+    
+    </div>
+    
 
+    
+
+    <div class="col-md-4" *ngFor="let eva of eva_tipo2">
+            <div class="card text-center">
+                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                        <i class="far fa-check-circle"></i>{{eva.nombre}} 
+                    <button class="btn btn-danger" (click)="deleteEvaluacion(eva.cod_evaluacion)">
+                        Eliminar
+                    </button>
+                </div>
+                <img [src]="" class="card-img-top">
+        
+                <div class="card-body">
+                    <h4>
+                        <p>Curso:  {{eva.curso}}</p>
+                        <p>Sección: {{eva.seccion}}</p>
+                        <p>Estado : {{eva.estado}}</p>
+                        <p>Orden Preguntas: {{eva.orden}}</p>
+                        <p>Tipo Evaluación : {{eva.tipo_evaluacion}}</p>
+                    </h4>
+
+                        <button class="btn btn-outline-warning" [routerLink]="['/evaluacion/multiple', eva.cod_evaluacion]" >
+                            Agregar Preguntas
+                            </button> <br>  
+                        <button class="btn btn-outline-info" (click)="orden(eva.cod_evaluacion)">
+                                Cambiar Orden
+                         </button>
+                       
+                        <br>
+                        <button class="btn btn-outline-danger" (click)="estado(eva.cod_evaluacion)">
+                               Habilitar
+                        </button>
+        
+                </div>
+            </div>
+        
+        </div>

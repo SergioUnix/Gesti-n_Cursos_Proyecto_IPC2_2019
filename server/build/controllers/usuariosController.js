@@ -11,10 +11,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const pool = require('../database');
 class UsuariosController {
-    // Obtengo una lista 
+    // Obtengo una lista menos el usuario administrador --------------
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuarios = yield pool.query('SELECT * FROM usuario');
+            const usuarios = yield pool.query('SELECT cod_usuario, usuario.nombre, carne, correo, pasword, cod_rol_fk, rol.nombre as rol FROM proyecto.usuario inner join rol on rol.cod_rol = usuario.cod_rol_fk where usuario.cod_rol_fk !=1');
             res.json(usuarios);
         });
     }

@@ -19,7 +19,8 @@ import {cursosController} from '../controllers/cursosController';
         this.router.get('/disponibles/dis', cursosController.listDisponibles); /// obtendo los Disponibles
         this.router.put('/Disponi/:id', cursosController.updateDis);  //actualizo
         this.router.put('/Ocupado/Ocu/:id', cursosController.updateOcup);  //actualizo
-    }
+        this.router.get('/validar/:curso/:seccion', cursosController.exist);  //Existe Nombre de Curso y Seccion ya creados?
+     }
 }
 
 const cursosRoutes =new CursosRoutes();

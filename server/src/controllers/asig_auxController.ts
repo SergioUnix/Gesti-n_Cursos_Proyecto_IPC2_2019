@@ -6,17 +6,17 @@ class Asig_auxiliarController{
     
   
     
-    // Obtengo una lista 
+    // Obtengo una lista -------------
     public async list(req: Request, res: Response ){ 
         const arreglo =await pool.query("SELECT cod_asignacion_auxiliar, semestre, año as anio, fecha_limite, cod_usuario_fk, cod_curso_fk, usuario.nombre as auxiliar,curso.nombre as curso, seccion.nombre as seccion, horario.hora_inicio, horario.hora_final FROM asignacion_auxiliar INNER JOIN usuario ON cod_usuario_fk =cod_usuario inner join curso on cod_curso=cod_curso_fk inner Join seccion ON cod_seccion=cod_seccion_fk    inner join horario On cod_horario = cod_horario_fk;");
         res.json(arreglo);  
         }
-        //Obtengo solo uno
+        //Obtengo lista de cursos a los que esta asignado un usuario ------------
         public async getOne(req: Request, res: Response ): Promise<any>{    
         const {id} =req.params;
-        const arreglo = await pool.query('SELECT * FROM asignacion_auxiliar where cod_asignacion_auxiliar=?', [id]);     
+        const arreglo = await pool.query('SELECT cod_asignacion_auxiliar, semestre, año as anio, fecha_limite, cod_usuario_fk, cod_curso_fk, usuario.nombre as auxiliar,curso.nombre as curso, seccion.nombre as seccion, horario.hora_inicio, horario.hora_final FROM asignacion_auxiliar INNER JOIN usuario ON cod_usuario_fk =cod_usuario inner join curso on cod_curso=cod_curso_fk inner Join seccion ON cod_seccion=cod_seccion_fk    inner join horario On cod_horario = cod_horario_fk where cod_usuario_fk=?', [id]);     
         if(arreglo.length>0){
-            return res.json(arreglo[0]);
+            return res.json(arreglo);
         }else{
         res.status(404).json({text:'La asignacion_auxiliar no existe '});}  
         }

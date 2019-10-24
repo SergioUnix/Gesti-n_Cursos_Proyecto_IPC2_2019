@@ -16,6 +16,7 @@ class CursosRoutes {
         this.router.get('/disponibles/dis', cursosController_1.cursosController.listDisponibles); /// obtendo los Disponibles
         this.router.put('/Disponi/:id', cursosController_1.cursosController.updateDis); //actualizo
         this.router.put('/Ocupado/Ocu/:id', cursosController_1.cursosController.updateOcup); //actualizo
+        this.router.get('/validar/:curso/:seccion', cursosController_1.cursosController.exist); //Existe Nombre de Curso y Seccion ya creados?
     }
 }
 const cursosRoutes = new CursosRoutes();

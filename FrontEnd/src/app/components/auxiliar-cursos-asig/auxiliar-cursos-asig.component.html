@@ -1,0 +1,59 @@
+
+
+   <div class="col-md-12">
+        <div class="card text-center">
+                <form>
+                        <h2> <label for="exampleInputEmail1">Cursos Asignados a un Auxiliar</label></h2>
+                            <div class="alert alert-warning" role="alert" *ngIf="isError">
+                    Faltan campos por llenar
+                </div>
+                <div class="alert alert-success" role="alert" *ngIf="isExito">
+                    Se Asigno exitosamente
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="isErrorGuardar">
+                   No Se asigno el curso porque ya esta asignado
+                </div>
+                
+                
+                
+                    </form>
+        
+        
+        </div>
+        </div>
+
+
+
+            <div class="col-md-4" *ngFor="let aux of asig_Auxiliares">
+                <div class="card text-center">
+                    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>{{aux.curso}}</h3>
+
+                    </div>
+                    <img [src]="" class="card-img-top">
+
+                    <div class="card-body">
+                        <h4>
+                            <p>Semestre : {{aux.semestre}}</p>
+                            <p>Año : {{aux.anio}}</p>
+                            <p>Fecha limite de Asignación : {{aux.fecha_limite | date: 'yyy-MM-dd'}}</p>
+                            <p>Auxiliar : {{aux.auxiliar}}</p>
+                            <p>Curso : {{aux.curso}}</p>
+                            <p>Sección : {{aux.seccion}}</p>
+                            <p>Hora Inicio : {{aux.hora_inicio}} hrs</p>
+                            <p>Hora Final : {{aux.hora_final}} hrs</p>
+
+                        </h4>
+                        <button class="btn btn-outline-info" [routerLink]="['/foro', aux.cod_asignacion_auxiliar]">
+                            Ver Foro del Curso
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+

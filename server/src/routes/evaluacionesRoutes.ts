@@ -17,7 +17,16 @@ import {evaluacionesController} from '../controllers/evaluacionesController';
         this.router.delete('/:id', evaluacionesController.delete);  // Elimino uno
 
         this.router.get('/asig/:id', evaluacionesController.getAsig);  //obtengo las asignaciones que se han hecho a un auxiliar
-    
+        this.router.get('/eva/tipo1/:cod', evaluacionesController.getEva_tipo1);  //obtengo las asignaciones que se han hecho a un auxiliar
+        this.router.get('/eva/tipo2/aux/:cod', evaluacionesController.getEva_tipo2);  //obtengo las asignaciones que se han hecho a un auxiliar
+        this.router.put('/estado/:id', evaluacionesController.updateEstado);  
+        this.router.put('/estado/orden/:id', evaluacionesController.updateOrden);
+
+        this.router.post('/preguntas', evaluacionesController.createPreguntas);  // creo uno
+        this.router.get('/preguntas/m/m/m/:id', evaluacionesController.getMultiples);
+        this.router.get('/preguntas/v/f/v/f/:id', evaluacionesController.getVerdadero);
+
+
     }
 }
 

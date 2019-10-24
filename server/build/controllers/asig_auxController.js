@@ -11,20 +11,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const pool = require('../database');
 class Asig_auxiliarController {
-    // Obtengo una lista 
+    // Obtengo una lista -------------
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const arreglo = yield pool.query("SELECT cod_asignacion_auxiliar, semestre, año as anio, fecha_limite, cod_usuario_fk, cod_curso_fk, usuario.nombre as auxiliar,curso.nombre as curso, seccion.nombre as seccion, horario.hora_inicio, horario.hora_final FROM asignacion_auxiliar INNER JOIN usuario ON cod_usuario_fk =cod_usuario inner join curso on cod_curso=cod_curso_fk inner Join seccion ON cod_seccion=cod_seccion_fk    inner join horario On cod_horario = cod_horario_fk;");
             res.json(arreglo);
         });
     }
-    //Obtengo solo uno
+    //Obtengo lista de cursos a los que esta asignado un usuario ------------
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const arreglo = yield pool.query('SELECT * FROM asignacion_auxiliar where cod_asignacion_auxiliar=?', [id]);
+            const arreglo = yield pool.query('SELECT cod_asignacion_auxiliar, semestre, año as anio, fecha_limite, cod_usuario_fk, cod_curso_fk, usuario.nombre as auxiliar,curso.nombre as curso, seccion.nombre as seccion, horario.hora_inicio, horario.hora_final FROM asignacion_auxiliar INNER JOIN usuario ON cod_usuario_fk =cod_usuario inner join curso on cod_curso=cod_curso_fk inner Join seccion ON cod_seccion=cod_seccion_fk    inner join horario On cod_horario = cod_horario_fk where cod_usuario_fk=?', [id]);
             if (arreglo.length > 0) {
-                return res.json(arreglo[0]);
+                return res.json(arreglo);
             }
             else {
                 res.status(404).json({ text: 'La asignacion_auxiliar no existe ' });

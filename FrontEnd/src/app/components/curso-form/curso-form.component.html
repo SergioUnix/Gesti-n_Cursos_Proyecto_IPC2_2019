@@ -11,8 +11,8 @@
             <div class="alert alert-success" role="alert" *ngIf="isExito">
                 Guardado exitosamente
             </div>
-            <div class="alert alert-success" role="alert" *ngIf="isErrorGuardar">
-                No se Guardo
+            <div class="alert alert-danger" role="alert" *ngIf="isErrorGuardar">
+                No se Guardo porque ya existe un Curso de igual nombre y sección
             </div>
 
             <form #formCurso="ngForm" (ngSubmit)="onCurso(formCurso)">

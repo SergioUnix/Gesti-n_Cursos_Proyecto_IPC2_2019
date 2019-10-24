@@ -2,9 +2,9 @@ import {Request, Response} from 'express';
 const pool = require ('../database');
 
 class UsuariosController{
-    // Obtengo una lista 
+    // Obtengo una lista menos el usuario administrador --------------
     public async list(req: Request, res: Response ){ 
-    const usuarios=await pool.query('SELECT * FROM usuario');
+    const usuarios=await pool.query('SELECT cod_usuario, usuario.nombre, carne, correo, pasword, cod_rol_fk, rol.nombre as rol FROM proyecto.usuario inner join rol on rol.cod_rol = usuario.cod_rol_fk where usuario.cod_rol_fk !=1');
     res.json(usuarios);  
     }
 

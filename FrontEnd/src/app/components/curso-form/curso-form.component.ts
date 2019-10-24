@@ -83,13 +83,41 @@ Visualizar_Error(){
 onCurso(form:NgForm){
   // console.log( form);
  if(form.valid){
- this.saveCurso();
- }else{
+ //this.saveCurso();
+ this.existeCursoIgual();
+}else{
  this.Visualizar_Error();
  }
  
  }
  
+///Valido si existe el nombre del curso con la misma sección
+
+//asigno cursos
+existeCursoIgual(){
+
+  this.cursosService.exist(this.curso.nombre.toString(),this.curso.cod_seccion_fk.toString()).subscribe(  /// 
+    res => {
+    //console.log(res);
+    console.log('Ya existe un curso con seccion igual');
+    this.Visualizar_ErrorGuardar();
+    },
+    err => {
+    
+    console.log('No existe por lo tanto se Guardara');
+    this.saveCurso();
+    this.Visualizar_Exito();
+
+
+
+    }
+    );
+
+
+}
+
+
+
 
  //Guardar Curso
  saveCurso(){    
@@ -114,8 +142,16 @@ onCurso(form:NgForm){
 
 
 
-
-
+ //Eliminar curso
+    deleteCurso(cod_curso){
+      this.cursosService.deleteCurso(cod_curso).subscribe(  /// 
+        res => {
+          this.getCursos(); 
+         },
+        err => console.error(err)
+      );
+    }
+    
 
 
 
