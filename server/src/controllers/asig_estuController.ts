@@ -21,12 +21,12 @@ class Asig_estudianteController{
         res.status(404).json({text:'la asignacion no existe '});}  
         }
     
-        // Creo uno    
+        // Creo uno    --------------
         public async create(req: Request, res: Response ){
         await pool.query('INSERT INTO asignacion_estudiante set ?', [req.body]);
         res.json({message: 'Guardado'});    
         }
-        // elimino
+        // elimino -----------------
         public delete(req: Request, res: Response ){
             const {id}= req.params;
             pool.query('Delete from asignacion_estudiante where cod_asignacion_estudiante=?',[id]);

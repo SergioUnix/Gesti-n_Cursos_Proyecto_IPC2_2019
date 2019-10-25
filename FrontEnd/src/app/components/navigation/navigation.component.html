@@ -11,9 +11,27 @@
       <ul class="navbar-nav ml-auto">  <!-- ml-auto       -->
         
 
-        <li class="nav-item">
-          <a class="nav-link"  *ngIf="true" routerLink="/asignar"><i class="far fa-address-card"></i> Asignación Curso</a>
-        </li>
+
+
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"*ngIf="true">
+                <i class="fas fa-dice-d6"></i>  Operaciones de Estudiante
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="nav-link"  *ngIf="true" routerLink="/asignar"><i class="far fa-address-card"></i> Asignación Curso</a>
+              <div class="dropdown-divider"></div>
+
+              
+
+              <a class="dropdown-item" routerLink="/ticket">crear Ticket</a>
+              <a class="dropdown-item" >Ver Tickets creados</a>
+            </div>
+          </li>
+
+
+
+
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"*ngIf="true">
@@ -42,8 +60,9 @@
 
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" routerLink="/curso">Gestión Curso</a>
-            <a class="dropdown-item" routerLink="/asig_auxiliar">Asigno auxiliar</a>
+            <a class="dropdown-item" routerLink="/asig_auxiliar">Asignar auxiliar</a>
             <a class="dropdown-item" routerLink="/lista_usuarios">Gestión de Usuarios</a>
+            <a class="dropdown-item" routerLink="/ticket/admin">Seguimiento de Ticket</a>
           </div>
         </li>
 

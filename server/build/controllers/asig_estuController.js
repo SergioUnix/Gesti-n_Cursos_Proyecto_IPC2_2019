@@ -31,14 +31,14 @@ class Asig_estudianteController {
             }
         });
     }
-    // Creo uno    
+    // Creo uno    --------------
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield pool.query('INSERT INTO asignacion_estudiante set ?', [req.body]);
             res.json({ message: 'Guardado' });
         });
     }
-    // elimino
+    // elimino -----------------
     delete(req, res) {
         const { id } = req.params;
         pool.query('Delete from asignacion_estudiante where cod_asignacion_estudiante=?', [id]);

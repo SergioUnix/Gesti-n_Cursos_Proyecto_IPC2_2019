@@ -11,6 +11,10 @@
 <br>
 
 
+<div class="alert alert-success" role="alert" *ngIf="isExito">
+       Curso Desasignado
+    </div>
+
 
 <div class="col-md-12" *ngFor="let asig of asig_cursos">
     <div class="card text-center">
@@ -18,7 +22,9 @@
                 <i class="fas fa-id-card-alt"></i>
             <h3>{{asig.curso}} Seccion {{asig.seccion}}</h3>
 
-
+            <button class="btn btn-outline-warning" (click)="desasignar(asig.cod_asignacion_estudiante)" >
+                    Desasignar Curso
+                </button>
         </div>
         <img [src]="" class="card-img-top">
 

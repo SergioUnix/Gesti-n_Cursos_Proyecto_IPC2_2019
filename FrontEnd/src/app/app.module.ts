@@ -41,6 +41,8 @@ import { ListaUsuariosEditComponent } from './components/lista-usuarios-edit/lis
 import { EvaluacionesVistaComponent } from './components/evaluaciones-vista/evaluaciones-vista.component';
 import { ActividadesVistaComponent } from './components/actividades-vista/actividades-vista.component';
 import { AuxiliarCursosAsigComponent } from './components/auxiliar-cursos-asig/auxiliar-cursos-asig.component';
+import { TicketComponent } from './components/ticket/ticket.component';
+import { TicketAdminComponent } from './components/ticket-admin/ticket-admin.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { AuxiliarCursosAsigComponent } from './components/auxiliar-cursos-asig/a
     ListaUsuariosEditComponent,
     EvaluacionesVistaComponent,
     ActividadesVistaComponent,
-    AuxiliarCursosAsigComponent
+    AuxiliarCursosAsigComponent,
+    TicketComponent,
+    TicketAdminComponent
   ],
   imports: [
     BrowserModule,

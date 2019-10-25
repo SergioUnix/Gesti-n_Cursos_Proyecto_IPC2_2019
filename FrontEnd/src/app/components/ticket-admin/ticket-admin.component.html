@@ -1,0 +1,56 @@
+  
+        
+    <div class="col-md-12">
+            <div class="card text-center">
+                    <form>
+                            <h2> <label for="exampleInputEmail1">Lista de Todos los tickets</label></h2>
+                    </form>
+            
+            
+            </div>
+            </div>
+            
+            
+        
+        
+            
+        <div class="col-md-4" *ngFor="let tic of tickets_usuario">
+                <div class="card text-center">
+                    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                            <i class="far fa-clock"></i>codigo: {{tic.cod_ticket}}
+                        <button class="btn btn-danger" (click)="deleteTicket(tic.cod_ticket)">
+                            Eliminar
+                        </button>
+                    </div>
+                    <img [src]="" class="card-img-top">
+            
+                    <div class="card-body">
+                        <h4>
+                            <p>Asunto : {{tic.asunto}}</p>
+                            <p>Cuerpo : {{tic.cuerpo}}</p>
+                            <p>Estado : {{tic.estado}} </p>
+
+                            <p>Usuario Creo: {{tic.nombre}}</p>
+                            
+                        </h4>
+                        <button class="btn btn-outline-success" (click)="updateEstado('1',tic.cod_ticket)">
+                            Estado Enviado
+                        </button>
+                        <button class="btn btn-outline-info" (click)="updateEstado('2',tic.cod_ticket)">
+                            Estado Recibido
+                        </button>
+                        <button class="btn btn-outline-danger" (click)="updateEstado('3',tic.cod_ticket)">
+                            Estado En Proceso
+                        </button>
+                        <button class="btn btn-outline-warning" (click)="updateEstado('4',tic.cod_ticket)">
+                            Estado Finalizado
+                        </button>
+
+                    </div>
+                </div>
+            
+            </div>
+            
+            
+        
+        

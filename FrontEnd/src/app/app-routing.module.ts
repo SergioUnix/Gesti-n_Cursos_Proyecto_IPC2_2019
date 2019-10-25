@@ -27,6 +27,9 @@ import {ActividadComponent} from './components/actividad/actividad.component'; /
 import {ActividadesVistaComponent} from './components/actividades-vista/actividades-vista.component'; //importamos componente
 import {AuxiliarCursosAsigComponent} from './components/auxiliar-cursos-asig/auxiliar-cursos-asig.component'; //importamos componente
 import {EvaluacionesVistaComponent} from './components/evaluaciones-vista/evaluaciones-vista.component'; //importamos componente
+import {TicketComponent} from './components/ticket/ticket.component'; //importamos componente
+import {TicketAdminComponent} from './components/ticket-admin/ticket-admin.component'; //importamos componente
+
 
 
 
@@ -138,7 +141,19 @@ const routes: Routes = [
   {
     path: 'actividades-vista/:id',
     component: ActividadesVistaComponent 
+  },
+  {
+    path: 'ticket',
+    component: TicketComponent
+  },
+  {
+    path: 'ticket/admin',
+    component: TicketAdminComponent
   }
+
+
+
+
 
 
 

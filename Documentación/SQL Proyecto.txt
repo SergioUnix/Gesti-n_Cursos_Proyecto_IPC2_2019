@@ -110,6 +110,7 @@ VALUES(1,5),(1,6),(1,7),(1,8);
 CREATE TABLE evaluacion (
   `cod_evaluacion` INT NOT NULL AUTO_INCREMENT,
   `nombre` varchar(20) NOT NULL,
+  `orden` varchar(20) default 'Normal',
   `estado` varchar(20)  default 'Deshabilitada',
   `tipo_evaluacion` varchar(20) NOT NULL,
   `cod_asignacion_auxiliar_fk` INT NOT NULL,
@@ -121,8 +122,8 @@ CREATE TABLE evaluacion (
 			REFERENCES usuario (`cod_usuario`) 
   );
     INSERT INTO `proyecto`.`evaluacion`
-(`cod_evaluacion`,`nombre`,`estado`,`tipo_evaluacion`,`cod_asignacion_auxiliar_fk`,`usuario_fk_eva`)
-VALUES();
+(`nombre`,`tipo_evaluacion`,`cod_asignacion_auxiliar_fk`,`usuario_fk_eva`)
+VALUES('Prueba corta 1','Selección Múltiple',1,2),('Prueba corta 2','Verdadero/Falso',1,2);
 
 
 
@@ -131,18 +132,28 @@ VALUES();
 -- -----------------------------------------------------
 CREATE TABLE pregunta (
   `cod_pregunta` INT NOT NULL AUTO_INCREMENT,
-  `pregunta` varchar(80) NOT NULL,
-  `correcta` varchar(80) NOT NULL,
-  `respuesta` varchar(80) NOT NULL,
-  `opcion1` varchar(80) NOT NULL,
-  `opcion2` varchar(80) NOT NULL,
-  `opcion3` varchar(80) NOT NULL,
-  `cod_evaluacion_fk` INT NOT NULL,
+  `pregunta` varchar(250)  NULL,
+  `correcta` varchar(80)  NULL,
+  `respuesta` varchar(80)  NULL,
+  `opcion1` varchar(80)   NULL,
+  `opcion2` varchar(80)  NULL,
+  `opcion3` varchar(80)  NULL,
+  `cod_evaluacion_fk` INT  NULL,
    PRIMARY KEY (`cod_pregunta`),
   CONSTRAINT `fk_evalua` FOREIGN KEY (`cod_evaluacion_fk`)
 			REFERENCES evaluacion (`cod_evaluacion`)
   
   );
+  INSERT INTO `proyecto`.`pregunta`
+(`pregunta`,`correcta`,`opcion1`,`opcion2`,`opcion3`,`cod_evaluacion_fk`)
+VALUES('que es DML?', 'Un Lenguaje', 'Sintaxis', 'Un Programa','Una BD',1),
+('que es Angular?', 'Un FrameWork', 'Una ER', 'Una Gramatica','Un Automata',1);
+
+INSERT INTO `proyecto`.`pregunta`
+(`pregunta`,`correcta`,`cod_evaluacion_fk`)
+VALUES('JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado?', 'Verdadero', 2),
+('MySQL Cluster es una base de datos transaccional de código PAGADO?', 'Falso',2);
+
 
 -- -----------------------------------------------------
 -- Table Foro
@@ -285,5 +296,3 @@ CREATE TABLE desasignacion (
   PRIMARY KEY (`cod_desasignacion`),
   CONSTRAINT `fk_Desasignacion_Usuario1`
     FOREIGN KEY (`cod_usuario_fk`) REFERENCES usuario (`cod_usuario`));
-
-

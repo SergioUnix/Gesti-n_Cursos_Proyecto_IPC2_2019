@@ -1,0 +1,122 @@
+<div class="col-md-12">
+        <div class="card text-center">
+                <form>
+                        <h2> <label for="exampleInputEmail1">Registrar Tickets por parte de un Estudiante</label></h2>
+                </form>
+        
+        
+        </div>
+        </div>
+        
+    
+    
+    <div class="col-md-4 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                            <div class="alert alert-warning" role="alert" *ngIf="isError"> 
+                                Llenar todos los campos
+                           </div>
+                           <div class="alert alert-success" role="alert" *ngIf="isExito">
+                            Guardado exitosamente
+                          </div>
+
+
+
+                <form  #formTicket="ngForm" (ngSubmit)="onTicket(formTicket)">
+                        <div class="form-group">
+                                <h3>Crear Ticket</h3>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="ticket.asunto" 
+                                #asunto="ngModel" required  minlength="1"  maxlength="250" 
+                                name="asunto" placeholder="Asunto" class="form-control" autofocus required>
+                            </div>
+                            <div class="alert alert-danger" role="alert" *ngIf="asunto.touched && !asunto.valid">
+                                <div *ngIf="asunto.errors.required"><h6>Campo Obligatorio</h6></div>
+                                <div *ngIf="asunto.errors.minlength"><h6>Campo tiene menos de 1 caracteres</h6></div>
+                                
+                            </div>
+        
+
+
+
+                            <div class="form-group">
+                                    <input type="text" [(ngModel)]="ticket.cuerpo" 
+                                    #cuerpo="ngModel" required  minlength="1"  maxlength="250" 
+                                    name="cuerpo" placeholder="Cuerpo" class="form-control" autofocus required>
+                                </div>
+                                <div class="alert alert-danger" role="alert" *ngIf="cuerpo.touched && !cuerpo.valid">
+                                    <div *ngIf="cuerpo.errors.required"><h6>Campo Obligatorio</h6></div>
+                                    <div *ngIf="cuerpo.errors.minlength"><h6>Campo tiene menos de 1 caracteres</h6></div>
+                                    
+                                </div>
+
+
+    
+                    <button type = "submit" class="btn btn-info btn-block" >
+                        Guardar Ticket
+    
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+       <!-- Esta es una previsualizacion a lo que voy a guardar      -->
+    
+       <div class="col-md-4 offset-md-2">
+        <div class="card card-body text-center">
+            <h3>Vista previa</h3>
+            <p>{{ticket.asunto == '' ? 'Asunto del Ticket:  ' : ticket.asunto}}</p>
+            <p>{{ticket.cuerpo == '' ? 'Cuerpo del Ticket:  ' : ticket.cuerpo}}</p>
+        </div>
+    </div>
+    
+    
+    
+        
+    <div class="col-md-12">
+    <div class="card text-center">
+            <form>
+                    <h2> <label for="exampleInputEmail1">Ticket Guardados por el Usuario Logueado</label></h2>
+            </form>
+    
+    
+    </div>
+    </div>
+    
+    
+
+
+    
+<div class="col-md-4" *ngFor="let tic of tickets_usuario">
+        <div class="card text-center">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <i class="far fa-clock"></i>codigo: {{tic.cod_ticket}}
+                <button class="btn btn-danger" (click)="deleteTicket(tic.cod_ticket)">
+                    Eliminar
+                </button>
+            </div>
+            <img [src]="" class="card-img-top">
+    
+            <div class="card-body">
+                <h4>
+                    <p>Asunto : {{tic.asunto}}</p>
+                    <p>Cuerpo : {{tic.cuerpo}}</p>
+                    <p>Estado : {{tic.estado}} </p>
+                    <p>Usuario Creo: {{tic.nombre}}</p>
+                    
+                </h4>
+    
+            </div>
+        </div>
+    
+    </div>
+    
+    
+

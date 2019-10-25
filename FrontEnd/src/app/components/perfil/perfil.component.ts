@@ -9,7 +9,7 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-
+  public isExito=false; 
   asig_cursos: any=[]
 
   constructor(private asigestuService:AsigEstuService,private usuariosService:UsuariosService, private router: Router,private activatedRoute:ActivatedRoute) { }
@@ -29,6 +29,26 @@ export class PerfilComponent implements OnInit {
 
 
 
+
+
+      Visualizar_Exito(){
+        this.isExito=true; 
+        setTimeout(( ) =>{this.isExito= false;}   ,   3000);
+      }
+      
+
+
+
+desasignar(cod_asignacion_estudiante){
+  
+  this.asigestuService.deleteAsig_estudiante(cod_asignacion_estudiante.toString()).subscribe(  /// 
+    res => { 
+    this.Visualizar_Exito();  
+    location.reload();
+ 
+    },
+    err => console.error(err)
+    );}
 
 
 
