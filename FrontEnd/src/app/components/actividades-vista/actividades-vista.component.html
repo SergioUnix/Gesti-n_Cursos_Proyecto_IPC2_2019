@@ -1,1 +1,30 @@
-<p>actividades-vista works!</p>
+
+        <div class="col-md-4" *ngFor="let ac of actividades_curso">
+                <div class="card text-center">
+                    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                            <i class="fab fa-artstation"></i><h3>Acti. {{ac.nombre}}</h3>
+
+                    </div>
+                    <img [src]="" class="card-img-top">
+            
+                    <div class="card-body">
+                        <h4>  
+                            <p>Curso al que pertenece: {{ac.curso}}</p>
+                            <p>Sección: {{ac.seccion}}</p>
+                            <p>Hora limite: {{ac.hora}}</p>
+                            <p>Fecha limite  : {{ac.fecha_actividad | date: 'yyy-MM-dd'}}</p>
+                            <p>Ponderación : {{ac.ponderacion}}</p>
+                            <p>Permiso para subir archivo : {{ac.archivo}}</p>
+                            <p>Auxiliar : {{ac.auxiliar}}</p>
+
+                            
+                        </h4>
+                        <button class="btn btn-outline-warning" [routerLink]="['/actividades-realizar/', ac.cod_actividad]">
+                               Realizar Actividad
+                        </button>
+
+            
+                    </div>
+                </div>
+            
+            </div>

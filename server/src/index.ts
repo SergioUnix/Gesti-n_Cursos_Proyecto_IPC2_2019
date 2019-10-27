@@ -12,6 +12,7 @@ import asig_auxRoutes from './routes/asig_auxRoutes';
 import forosRoutes from './routes/forosRoutes';
 import evaluacionesRoutes from './routes/evaluacionesRoutes';
 import ticketsRoutes from './routes/ticketsRoutes';
+import actividadesRoutes from './routes/actividadesRoutes';
 
 class Server {
 
@@ -45,7 +46,7 @@ class Server {
         this.app.use('/api/foros',forosRoutes);
         this.app.use('/api/evaluaciones',evaluacionesRoutes);
         this.app.use('/api/tickets', ticketsRoutes);
-
+        this.app.use('/api/actividades', actividadesRoutes);
 
 
 

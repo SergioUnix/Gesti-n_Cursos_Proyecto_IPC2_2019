@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
 export class EvaluacionComponent implements OnInit {
 
   @HostBinding('class') classes='row';  //necesario para desplegar un producto a la par de otro 
- asignaciones: any=[];
+asignaciones: any=[];
 eva_tipo1: any=[];
 eva_tipo2: any=[];
 

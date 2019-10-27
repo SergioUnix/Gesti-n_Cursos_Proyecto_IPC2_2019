@@ -20,8 +20,9 @@ import { SeccionService } from './servicios/seccion.service';
 import { CursosService } from './servicios/cursos.service';
 import { AsigAuxService } from './servicios/asig-aux.service';
 import { AsigEstuService } from './servicios/asig-estu.service';
-
-
+import { TicketsService} from './servicios/tickets.service';
+import { EvaluacionesService} from './servicios/evaluaciones.service';
+import { ActividadesService} from './servicios/actividades.service';
 
 import { SeccionEditComponent } from './components/seccion-edit/seccion-edit.component';
 import { RegistroAuxiliarComponent } from './components/registro-auxiliar/registro-auxiliar.component';
@@ -43,6 +44,7 @@ import { ActividadesVistaComponent } from './components/actividades-vista/activi
 import { AuxiliarCursosAsigComponent } from './components/auxiliar-cursos-asig/auxiliar-cursos-asig.component';
 import { TicketComponent } from './components/ticket/ticket.component';
 import { TicketAdminComponent } from './components/ticket-admin/ticket-admin.component';
+import { ActividadRealizarComponent } from './components/actividad-realizar/actividad-realizar.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import { TicketAdminComponent } from './components/ticket-admin/ticket-admin.com
     ActividadesVistaComponent,
     AuxiliarCursosAsigComponent,
     TicketComponent,
-    TicketAdminComponent
+    TicketAdminComponent,
+    ActividadRealizarComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +91,7 @@ import { TicketAdminComponent } from './components/ticket-admin/ticket-admin.com
     SeccionService,
     CursosService,
     AsigAuxService,
-    AsigEstuService
+    AsigEstuService,
 
 
 
