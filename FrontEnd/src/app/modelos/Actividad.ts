@@ -9,4 +9,5 @@ export interface Actividad  {
     ruta_archivo?: string;
     cod_asignacion_auxiliar_fk?: number;
     cod_usuario_fk?: number;
+    cod_actividad_padre?:number;
 }

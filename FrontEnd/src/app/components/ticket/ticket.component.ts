@@ -69,9 +69,12 @@ constructor(private ticketsService: TicketsService, private usuariosService: Usu
   
 /////guardo 
 saveTicket(){
+  let cod=this.usuariosService.getSesionCod();
   delete this.ticket.cod_ticket;
   delete this.ticket.cod_estado_fkt;
-  
+  this.ticket.cod_usuario_fkt=Number(cod);
+  this.ticket.cod_estado_fkt =1;
+   console.log(this.ticket);
   this.ticketsService.saveTicket(this.ticket)
   .subscribe(
     res=> {

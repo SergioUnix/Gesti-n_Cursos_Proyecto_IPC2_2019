@@ -30,6 +30,11 @@ import {EvaluacionesVistaComponent} from './components/evaluaciones-vista/evalua
 import {TicketComponent} from './components/ticket/ticket.component'; //importamos componente
 import {TicketAdminComponent} from './components/ticket-admin/ticket-admin.component'; //importamos componente
 import {ActividadRealizarComponent} from './components/actividad-realizar/actividad-realizar.component'; //importamos componente
+import {ActividadesCursosAsigComponent} from './components/actividades-cursos-asig/actividades-cursos-asig.component'; //importamos componente
+import {ActividadesCrearNotaComponent} from './components/actividades-crear-nota/actividades-crear-nota.component'; //importamos componente
+import {ActividadesVerNotasComponent} from './components/actividades-ver-notas/actividades-ver-notas.component'; //importamos componente
+
+
 
 
 
@@ -155,7 +160,22 @@ const routes: Routes = [
   {
     path: 'ticket/admin',
     component: TicketAdminComponent
+  },
+  {
+    path: 'actividades/lista/calificar',
+    component: ActividadesCursosAsigComponent
+  },
+  {
+    path: 'actividades-cali/:id',
+    component: ActividadesCrearNotaComponent
+  },
+  {
+    path: 'ver-notas',
+    component: ActividadesVerNotasComponent
   }
+
+
+
 
 
 

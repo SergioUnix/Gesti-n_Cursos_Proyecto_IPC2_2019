@@ -91,6 +91,32 @@ class EvaluacionesController {
             }
         });
     }
+    // encontrar evaluaciones creadas dado un Curso y tambien tipo de evaluacion  Verdadero/Falso
+    getEva_tipo1_curso(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { cod } = req.params;
+            const evaluaciones = yield pool.query("Select cod_evaluacion, evaluacion.nombre,evaluacion.estado, tipo_evaluacion, cod_asignacion_auxiliar_fk, usuario_fk_eva,curso.nombre as curso  ,evaluacion.orden, seccion.nombre as seccion FROM evaluacion INNER JOIN asignacion_auxiliar ON cod_asignacion_auxiliar =cod_asignacion_auxiliar_fk Inner join curso on cod_curso= cod_curso_fk Inner join seccion on cod_seccion= curso.cod_seccion_fk where cod_asignacion_auxiliar=? and tipo_evaluacion='Verdadero/Falso'", [cod]);
+            if (evaluaciones.length > 0) {
+                return res.json(evaluaciones);
+            }
+            else {
+                res.status(404).json({ text: 'No se encontro evaluaciones hechas por un auxiliar' });
+            }
+        });
+    }
+    // encontrar evaluaciones creadas Dado un Curso y tambien tipo de evaluacion Selección Múltiple
+    getEva_tipo2_curso(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { cod } = req.params;
+            const evaluaciones = yield pool.query("Select cod_evaluacion, evaluacion.nombre,evaluacion.estado, tipo_evaluacion, cod_asignacion_auxiliar_fk, usuario_fk_eva, curso.nombre as curso  ,evaluacion.orden, seccion.nombre as seccion FROM evaluacion INNER JOIN asignacion_auxiliar ON cod_asignacion_auxiliar =cod_asignacion_auxiliar_fk Inner join curso on cod_curso= cod_curso_fk Inner join seccion on cod_seccion= curso.cod_seccion_fk where cod_asignacion_auxiliar=? and tipo_evaluacion='Selección Múltiple'", [cod]);
+            if (evaluaciones.length > 0) {
+                return res.json(evaluaciones);
+            }
+            else {
+                res.status(404).json({ text: 'No se encontro evaluaciones hechas por un auxiliar' });
+            }
+        });
+    }
     // Funcion que cambia de esta un Curso de Disponible a Ocupado   
     updateEstado(req, res) {
         return __awaiter(this, void 0, void 0, function* () {

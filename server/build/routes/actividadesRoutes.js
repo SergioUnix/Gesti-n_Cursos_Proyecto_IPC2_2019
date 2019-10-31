@@ -12,7 +12,11 @@ class ActividadesRoutes {
         this.router.get('/usuario/:id', actividadesController_1.actividadesController.getList_user); //obtengo todas las actividades de un usuario -------
         this.router.get('/asignacion/aux/:id', actividadesController_1.actividadesController.getActividades_curso); //obtengo todas las actividades de un curso -------
         this.router.get('/lista/actividad/usuario/:id', actividadesController_1.actividadesController.getOne); //obtengo solo una actividad dado un cod_actividad -------
+        this.router.get('/lista/actividad/usuario/estudiante/:id', actividadesController_1.actividadesController.getActividades_hijas); //obtengo solo las actividades hijas de Una Actividad padre -------
+        this.router.get('/validar/v/v/v/v/:usuario/:actividad', actividadesController_1.actividadesController.existNota); //existe ya la nota creada para esta actividad?
+        this.router.get('/validar/v/v/v/v/nota/nota/usuario/:id', actividadesController_1.actividadesController.actividadesNotas); //existe ya la nota creada para esta actividad?
         this.router.post('/', actividadesController_1.actividadesController.create); // creo una actividad -----------
+        this.router.post('/nota', actividadesController_1.actividadesController.createNota); // creo una actividad -----------
         this.router.put('/:id', actividadesController_1.actividadesController.update); //actualizo
         this.router.delete('/:id', actividadesController_1.actividadesController.delete); // Elimino uno
         this.router.put('/estado/:estado/:id', actividadesController_1.actividadesController.updateEstado); //actualizo

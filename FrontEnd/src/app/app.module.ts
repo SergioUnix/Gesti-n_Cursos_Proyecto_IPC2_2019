@@ -45,6 +45,9 @@ import { AuxiliarCursosAsigComponent } from './components/auxiliar-cursos-asig/a
 import { TicketComponent } from './components/ticket/ticket.component';
 import { TicketAdminComponent } from './components/ticket-admin/ticket-admin.component';
 import { ActividadRealizarComponent } from './components/actividad-realizar/actividad-realizar.component';
+import { ActividadesCursosAsigComponent } from './components/actividades-cursos-asig/actividades-cursos-asig.component';
+import { ActividadesCrearNotaComponent } from './components/actividades-crear-nota/actividades-crear-nota.component';
+import { ActividadesVerNotasComponent } from './components/actividades-ver-notas/actividades-ver-notas.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +79,10 @@ import { ActividadRealizarComponent } from './components/actividad-realizar/acti
     AuxiliarCursosAsigComponent,
     TicketComponent,
     TicketAdminComponent,
-    ActividadRealizarComponent
+    ActividadRealizarComponent,
+    ActividadesCursosAsigComponent,
+    ActividadesCrearNotaComponent,
+    ActividadesVerNotasComponent
   ],
   imports: [
     BrowserModule,

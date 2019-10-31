@@ -64,6 +64,13 @@ class ActividadesController {
             res.json({ message: 'actividad Guardada' });
         });
     }
+    // Creo una Nota  ----------------------
+    createNota(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield pool.query('INSERT INTO nota set ?', [req.body]);
+            res.json({ message: 'nota Guardada' });
+        });
+    }
     // elimino ------------------
     delete(req, res) {
         const { id } = req.params;
@@ -85,6 +92,46 @@ class ActividadesController {
             const { estado } = req.params;
             yield pool.query("UPDATE ticket set cod_estado_fkt=?  WHERE  cod_ticket=?", [estado, id]);
             res.json({ massage: 'Estado Cambiado' });
+        });
+    }
+    //Obtengo las actividades hijas de una actividad Padre   dado el pacdre-- cod_actividad_padre
+    getActividades_hijas(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const arreglo = yield pool.query('SELECT cod_actividad, actividad.nombre as actividad, texto, ruta_archivo,cod_usuario_fk, usuario.cod_usuario, cod_actividad_padre, usuario.nombre as estudiante  FROM proyecto.actividad inner join proyecto.usuario on usuario.cod_usuario= actividad.cod_usuario_fk where actividad.cod_asignacion_auxiliar_fk is Null and cod_actividad_padre=?', [id]);
+            if (arreglo.length > 0) {
+                return res.json(arreglo);
+            }
+            else {
+                res.status(404).json({ text: 'No hay actividades ' });
+            }
+        });
+    }
+    ////Verifica si existe la Nota creada para dicho curso
+    existNota(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { usuario } = req.params;
+            const { actividad } = req.params;
+            const arreglo = yield pool.query("SELECT * FROM proyecto.nota where Usuario_cod_usuario=? and Actividad_cod_actividad=?", [usuario, actividad]);
+            if (arreglo.length > 0) {
+                return res.json(arreglo);
+            }
+            else {
+                res.status(404).json({ text: 'No hay actividades ' });
+            }
+        });
+    }
+    // Obtengo todas las notas de un estudiante dado un cod_usuario
+    actividadesNotas(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const arreglo = yield pool.query('SELECT cod_nota, nota_obtenida, actividad.nombre as actividad FROM proyecto.nota inner join actividad on actividad.cod_actividad = nota.Actividad_cod_actividad where nota.Usuario_cod_usuario=?', [id]);
+            if (arreglo.length > 0) {
+                return res.json(arreglo);
+            }
+            else {
+                res.status(404).json({ text: 'No hay actividades ' });
+            }
         });
     }
 }

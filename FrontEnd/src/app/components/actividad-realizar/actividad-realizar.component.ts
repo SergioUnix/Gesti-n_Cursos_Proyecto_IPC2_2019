@@ -19,6 +19,8 @@ export class ActividadRealizarComponent implements OnInit {
   public isExito=false; 
   public isErrorGuardar=false;
   public cod_asig_curso=0;
+public cod_actividad=0;
+
  actividad:Actividad={    
   cod_actividad:0,
   nombre: '',
@@ -30,6 +32,7 @@ export class ActividadRealizarComponent implements OnInit {
   ruta_archivo: '',
   cod_asignacion_auxiliar_fk: 0,
   cod_usuario_fk: 0,
+  cod_actividad_padre:0,
 }
 
 
@@ -57,6 +60,7 @@ function convertToBoolean(input: string): boolean | undefined {
 
 
 if(params.id){        //este params.id me detecta el numero
+  this.cod_actividad=params.id;
   this.actividadesService.getOne_actividad(params.id)
     .subscribe(
        res =>{
@@ -109,6 +113,7 @@ onActividad(form:NgForm){
   delete this.actividad.ponderacion;
   delete this.actividad.cod_asignacion_auxiliar_fk;
   delete this.actividad.archivo;
+  this.actividad.cod_actividad_padre=this.cod_actividad;
 
   this.actividad.cod_usuario_fk = Number(this.usuariosService.getSesionCod());
 

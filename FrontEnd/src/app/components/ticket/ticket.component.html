@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <input type="text" [(ngModel)]="ticket.asunto" 
                                 #asunto="ngModel" required  minlength="1"  maxlength="250" 
-                                name="asunto" placeholder="Asunto" class="form-control" autofocus required>
+                                name="asunto" placeholder="Asunto" class="form-control" autofocus required autocomplete="off">
                             </div>
                             <div class="alert alert-danger" role="alert" *ngIf="asunto.touched && !asunto.valid">
                                 <div *ngIf="asunto.errors.required"><h6>Campo Obligatorio</h6></div>
@@ -47,7 +47,7 @@
                             <div class="form-group">
                                     <input type="text" [(ngModel)]="ticket.cuerpo" 
                                     #cuerpo="ngModel" required  minlength="1"  maxlength="250" 
-                                    name="cuerpo" placeholder="Cuerpo" class="form-control" autofocus required>
+                                    name="cuerpo" placeholder="Cuerpo" class="form-control" autofocus required autocomplete="off">
                                 </div>
                                 <div class="alert alert-danger" role="alert" *ngIf="cuerpo.touched && !cuerpo.valid">
                                     <div *ngIf="cuerpo.errors.required"><h6>Campo Obligatorio</h6></div>

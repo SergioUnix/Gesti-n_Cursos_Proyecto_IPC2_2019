@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
+
+
   public admin_funcion = false;
   public auxiliar_funcion = false;
   public estudiante_funcion = false;
@@ -22,8 +24,9 @@ export class NavigationComponent implements OnInit {
    this.onCheckUser();
    //Obtengo el nombre del Usuario Logueado
    this.usuario_activo=this.usuariosService.getSesionNombre();
-
+   console.log('Cod Rol del Usuario = ');
    console.log(this.usuariosService.getSesionTipo());
+   console.log('Nombres del Usuario logueado = ');
    console.log(this.usuariosService.getSesionNombre());
 
 
@@ -44,10 +47,10 @@ export class NavigationComponent implements OnInit {
       this.estudiante_funcion=true;   
     } else if(this.usuariosService.getSesionTipo()=='2') {
       this.auxiliar_funcion = true;
-      this.estudiante_funcion=true;   
+      this.estudiante_funcion=false;   
     }else if(this.usuariosService.getSesionTipo()=='3') {
       this.estudiante_funcion = true;
-      this.auxiliar_funcion=true;
+      this.auxiliar_funcion=false;
   }}
 
 
@@ -59,6 +62,8 @@ export class NavigationComponent implements OnInit {
     this.router.navigate(['/login']);
     location.reload();
     }
+
+
 
 
 

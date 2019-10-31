@@ -1,0 +1,38 @@
+
+<div class="col-md-12">
+    <div class="card text-center">
+            <form>
+                    <h2> <label for="exampleInputEmail1">Elegir Curso para ver Actividades a Calificar</label></h2>
+            </form>
+    
+    
+    </div>
+    </div>
+    
+    
+      
+
+    <div class="col-md-4" *ngFor="let ac of actividades_user">
+            <div class="card text-center">
+                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                        <h3>{{ac.cod_actividad}}.  Acti. {{ac.nombre}}</h3>
+
+                </div>
+                <img [src]="" class="card-img-top">
+        
+                <div class="card-body">
+                    <h4>  
+                        <p>Curso al que pertenece: {{ac.curso}}</p>
+                        <p>Sección: {{ac.seccion}}</p>
+                        <p>Auxiliar : {{ac.auxiliar}}</p>
+ 
+                    </h4>
+                    <button class="btn btn-outline-warning" [routerLink]="['/actividades-cali/', ac.cod_actividad]">
+                     Actividades de Estudiantes
+                    </button>
+
+        
+                </div>
+            </div>
+        
+        </div>

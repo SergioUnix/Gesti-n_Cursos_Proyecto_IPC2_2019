@@ -19,6 +19,10 @@ import {evaluacionesController} from '../controllers/evaluacionesController';
         this.router.get('/asig/:id', evaluacionesController.getAsig);  //obtengo las asignaciones que se han hecho a un auxiliar
         this.router.get('/eva/tipo1/:cod', evaluacionesController.getEva_tipo1);  //obtengo las asignaciones que se han hecho a un auxiliar
         this.router.get('/eva/tipo2/aux/:cod', evaluacionesController.getEva_tipo2);  //obtengo las asignaciones que se han hecho a un auxiliar
+        this.router.get('/eva/tipo1/curso/c/c/c/:cod', evaluacionesController.getEva_tipo1_curso);  //obtengo las asignaciones que se han hecho a un auxiliar
+        this.router.get('/eva/tipo2/curso/c/c/c/c/:cod', evaluacionesController.getEva_tipo2_curso);  //obtengo las asignaciones que se han hecho a un auxiliar
+         
+        
         this.router.put('/estado/:id', evaluacionesController.updateEstado);  
         this.router.put('/estado/orden/:id', evaluacionesController.updateOrden);
 

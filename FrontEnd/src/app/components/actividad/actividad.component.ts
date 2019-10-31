@@ -5,7 +5,7 @@ import { Actividad} from 'src/app/modelos/Actividad';
 import {ActividadesService} from '../../servicios/actividades.service'
 import { NgForm } from '@angular/forms';
 import { EvaluacionesService } from 'src/app/servicios/evaluaciones.service';
- 
+  
 @Component({
   selector: 'app-actividad',
   templateUrl: './actividad.component.html',

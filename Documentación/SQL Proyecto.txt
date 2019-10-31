@@ -220,15 +220,21 @@ CREATE TABLE mensaje (
 -- -----------------------------------------------------
 CREATE TABLE actividad (
   `cod_actividad` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NULL,
-  `hora` Time  NOT NULL,
-  `fecha_limite` date NOT NULL,
-  `Ponderación` VARCHAR(45) Not NULL,
+  `nombre` VARCHAR(85) NULL,
+  `hora` Time  NULL,
+  `fecha_limite` date  NULL,
+  `ponderacion` VARCHAR(45)  NULL,
   `archivo` varchar(20) NULL,
-  `Asignacion_auxiliar_cod_asignacion_auxiliar1` INT NOT NULL,
+  `texto` varchar(350) NULL,
+  `ruta_archivo` varchar(350) NULL,
+  `cod_asignacion_auxiliar_fk` INT NULL,
+  `cod_usuario_fk` INT NULL,
   PRIMARY KEY (`cod_actividad`),
-  CONSTRAINT `fk_Actividad_Asignacion_auxiliar1`
-    FOREIGN KEY (`Asignacion_auxiliar_cod_asignacion_auxiliar1`) REFERENCES asignacion_auxiliar (`cod_asignacion_auxiliar`));
+  CONSTRAINT `fk_Actividad` FOREIGN KEY (`cod_asignacion_auxiliar_fk`) REFERENCES asignacion_auxiliar (`cod_asignacion_auxiliar`),
+  CONSTRAINT `fk_usuario` FOREIGN KEY (`cod_usuario_fk`) REFERENCES usuario (`cod_usuario`));
+INSERT INTO `proyecto`.`actividad`
+(`nombre`,`hora`,`fecha_limite`,`ponderacion`,`archivo`,`cod_asignacion_auxiliar_fk`,`cod_usuario_fk`)
+VALUES('Resumen de Conferencia', '23:59:00','2019-08-12','20','true',1,2),('Ensayo de Metodologias', '23:59:00','2019-09-01','15','false',1,2);
 
 
 -- -----------------------------------------------------
@@ -265,22 +271,27 @@ CREATE TABLE estado (
   `cod_estado` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
   PRIMARY KEY (`cod_estado`));
-
+INSERT INTO `proyecto`.`estado`
+(`nombre`)VALUES('Enviado'),('Recibido'),('En Proceso'),('Finalizado');
 
 -- -----------------------------------------------------
 -- Table Ticket
 -- -----------------------------------------------------
 CREATE TABLE ticket (
   `cod_ticket` INT NOT NULL AUTO_INCREMENT,
-  `Asunto` VARCHAR(45) NULL,
-  `cuerpo` VARCHAR(45) NULL,
-  `Usuario_cod_usuario` INT NOT NULL,
-  `Estado_cod_estado` INT NOT NULL,
+  `asunto` VARCHAR(100) NULL,
+  `cuerpo` VARCHAR(250) NULL, 
+  `cod_estado_fkt` INT NOT NULL,
+  `cod_usuario_fkt` INT NOT NULL,
   PRIMARY KEY (`cod_ticket`),
-  CONSTRAINT `fk_Ticket_Usuario1`
-    FOREIGN KEY (`Usuario_cod_usuario`)REFERENCES usuario (`cod_usuario`),
-  CONSTRAINT `fk_Ticket_Estado1`
-    FOREIGN KEY (`Estado_cod_estado`) REFERENCES estado (`cod_estado`));
+    CONSTRAINT `fkEstado`
+    FOREIGN KEY (`cod_estado_fkt`) REFERENCES estado (`cod_estado`),
+  CONSTRAINT `fkUsuario1`
+    FOREIGN KEY (`cod_usuario_fkt`)REFERENCES usuario (`cod_usuario`));
+
+INSERT INTO `proyecto`.`ticket`
+(`asunto`,`cuerpo`,`cod_estado_fkt`,`cod_usuario_fkt`)
+VALUES('[IPC2]Asunto','El Auxiliar no dio laboratorio la semana que paso',1,7),('[IPC2]Tarea','El Auxiliar no me califico la práctica ',1,7);
 
 
 -- -----------------------------------------------------
@@ -296,3 +307,5 @@ CREATE TABLE desasignacion (
   PRIMARY KEY (`cod_desasignacion`),
   CONSTRAINT `fk_Desasignacion_Usuario1`
     FOREIGN KEY (`cod_usuario_fk`) REFERENCES usuario (`cod_usuario`));
+
+

@@ -25,7 +25,7 @@
                         <label for="">Nombre</label>
                         <input id="nombre" name="nombre"
                             class="form-control" type="text"placeholder="nombre" [(ngModel)]="actividad.nombre" autocomplete="off"
-                              required    #nombre="ngModel" required  minlength="1"  maxlength="40" >
+                              required    #nombre="ngModel" required  minlength="1"  maxlength="40" disabled>
                             <div class="alert alert-danger" role="alert" *ngIf="nombre.touched && !nombre.valid">
                                 <div *ngIf="nombre.errors.required"><h6>Campo Obligatorio</h6></div>
                                 <div *ngIf="nombre.errors.minlength"><h6>Campo tiene menos de 1 caracteres</h6></div>
@@ -37,7 +37,7 @@
                         <label for="">Texto</label>
                         <input id="texto" name="texto"
                             class="form-control" type="text"placeholder="texto" [(ngModel)]="actividad.texto" autocomplete="off"
-                              required    #texto="ngModel" required  minlength="1"  maxlength="40" >
+                              required    #texto="ngModel" required  minlength="1"  maxlength="249" >
                             <div class="alert alert-danger" role="alert" *ngIf="texto.touched && !texto.valid">
                                 <div *ngIf="texto.errors.required"><h6>Campo Obligatorio</h6></div>
                                 <div *ngIf="texto.errors.minlength"><h6>Campo tiene menos de 1 caracteres</h6></div>
@@ -61,7 +61,7 @@
      
     
                     <button  type="submit" class="btn btn-success btn-block" >
-                        Registrar
+                       Responder Actividad
                     </button>
                     <br>
                     <br>

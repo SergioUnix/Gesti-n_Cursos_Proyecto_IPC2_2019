@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Actividad } from 'src/app/modelos/Actividad';   //importo el tipo de dato,
+import { Nota } from 'src/app/modelos/Nota';
 import { Router } from '@angular/router';
 
 
@@ -43,6 +44,12 @@ saveActividad(actividad:Actividad){
 return this.http.post(`${this.API_URI}/actividades`, actividad);
 
 }
+//creo una nota
+saveNota(nota:Nota){
+  return this.http.post(`${this.API_URI}/actividades/nota`, nota);
+  
+  }
+
 //metodo de borrar------------
 deleteActividad(id: string){
 return this.http.delete(`${this.API_URI}/actividades/${id}`);
@@ -59,6 +66,18 @@ updateEstado_Actividad(estado:string, id: string){
   
   }
 
-
+//obtengo todas las actividades hijas dado una actividad Padre -------
+getActividades_hijas(id: string){
+  return this.http.get(`${this.API_URI}/actividades/lista/actividad/usuario/estudiante/${id}`);
+  }
+  
+///Verifica si existe la nota para dicha actividad
+existNota(usuario: string, actividad: string){
+  return this.http.get(`${this.API_URI}/actividades/validar/v/v/v/v/${usuario}/${actividad}`);
+  }
+/// obtengo todas las notas de las actividades con un cod_usuario dado
+getactividadesNotas(id: string){
+  return this.http.get(`${this.API_URI}/actividades/validar/v/v/v/v/nota/nota/usuario/${id}`);
+  }
 
 }

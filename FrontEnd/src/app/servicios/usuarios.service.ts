@@ -36,6 +36,7 @@ setSesion(usuariorecibido:Usuario){
 OutSesion(){ 
 localStorage.setItem("cod_usuario", '');
 localStorage.setItem("nombre", '');
+localStorage.setItem("rol", '');
 localStorage.setItem("usuario", '')
   this.logeado=null;
 
