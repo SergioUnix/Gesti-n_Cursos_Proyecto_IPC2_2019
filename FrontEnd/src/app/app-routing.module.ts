@@ -33,6 +33,12 @@ import {ActividadRealizarComponent} from './components/actividad-realizar/activi
 import {ActividadesCursosAsigComponent} from './components/actividades-cursos-asig/actividades-cursos-asig.component'; //importamos componente
 import {ActividadesCrearNotaComponent} from './components/actividades-crear-nota/actividades-crear-nota.component'; //importamos componente
 import {ActividadesVerNotasComponent} from './components/actividades-ver-notas/actividades-ver-notas.component'; //importamos componente
+import {BusquedaAuxiliaresComponent} from './components/busqueda-auxiliares/busqueda-auxiliares.component'; //importamos componente
+import {DesasignarAuxiliarComponent} from './components/desasignar-auxiliar/desasignar-auxiliar.component'; //importamos componente
+import {MotivoComponent} from './components/motivo/motivo.component'; //importamos componente
+
+
+
 
 
 
@@ -172,7 +178,21 @@ const routes: Routes = [
   {
     path: 'ver-notas',
     component: ActividadesVerNotasComponent
+  },
+  {
+    path: 'auxiliares',
+    component: BusquedaAuxiliaresComponent
+  },
+  {
+    path: 'auxiliares-desasignar',
+    component: DesasignarAuxiliarComponent
+  },
+  {
+    path: 'motivo/:id',
+    component: MotivoComponent
   }
+
+
 
 
 

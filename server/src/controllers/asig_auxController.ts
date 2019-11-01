@@ -20,6 +20,16 @@ class Asig_auxiliarController{
         }else{
         res.status(404).json({text:'La asignacion_auxiliar no existe '});}  
         }
+
+        ///obtengo los datos de una sola asignación
+        public async getAsignacion(req: Request, res: Response ): Promise<any>{    
+            const {id} =req.params;
+            const arreglo = await pool.query('SELECT * FROM proyecto.asignacion_auxiliar where cod_asignacion_auxiliar=?', [id]);     
+            if(arreglo.length>0){
+                return res.json(arreglo[0]);
+            }else{
+            res.status(404).json({text:'La asignacion_auxiliar no existe '});}  
+            }
     
         // Creo uno    
         public async create(req: Request, res: Response ){
@@ -54,6 +64,16 @@ class Asig_auxiliarController{
             await pool.query('INSERT INTO foro set ?', [req.body]);
             res.json({message: 'Foro creado automaticamente'});    
             }
+
+
+    
+        // Creo un motivo para la desasignacion de un auxiliar    
+        public async createMotivo(req: Request, res: Response ){
+            await pool.query('INSERT INTO desasignacion set ?', [req.body]);
+            res.json({message: 'Auxiliar Desasignado'});    
+            }
+
+
 
 }
 

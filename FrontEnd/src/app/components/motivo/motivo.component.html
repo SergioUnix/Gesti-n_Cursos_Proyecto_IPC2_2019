@@ -1,0 +1,50 @@
+<main role="main" class="container my-auto">
+        <div class="row">
+            <div id="login" class="col-lg-4 offset-lg-4 col-md-6 offset-md-3
+                col-12">
+                <h2 class="text-center"><i class="fas fa-book-open"></i>  Escribir Motivo de Desasignación</h2>
+    
+    
+                <div class="alert alert-warning" role="alert" *ngIf="isError">
+                    Faltan campos por llenar
+                </div>
+                <div class="alert alert-success" role="alert" *ngIf="isExito">
+                    Guardado exitosamente
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="isErrorGuardar">
+                    No se Guardo
+                </div>
+    
+                <form #formMotivo="ngForm" (ngSubmit)="onMotivo(formMotivo)">
+    
+    
+    
+    
+                    <div class="form-group">
+                        <label for="motivo_des.motivo">Motivo de la Desasignación</label>
+                        <input id="motivo" name="motivo" class="form-control" type="text" placeholder="Motivo"
+                            [(ngModel)]="motivo_des.motivo" autocomplete="off" required #motivo="ngModel" required minlength="1"
+                            maxlength="45">
+                        <div class="alert alert-danger" role="alert" *ngIf="motivo.touched && !motivo.valid">
+                            <div *ngIf="motivo.errors.required">
+                                <h6>Campo Obligatorio</h6>
+                            </div>
+                            <div *ngIf="motivo.errors.minlength">
+                                <h6>Campo tiene menos de 1 caracteres</h6>
+                            </div>
+                        </div>
+                    </div>
+    
+    
+                    <button type="submit" class="btn btn-success btn-block">
+                        Realizar Desasignación de auxiliar
+                    </button>
+                    <br>
+                  <br>
+                  <br>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    

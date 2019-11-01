@@ -117,7 +117,7 @@ CREATE TABLE evaluacion (
   `usuario_fk_eva` INT NOT NULL,
   PRIMARY KEY (`cod_evaluacion`),
   CONSTRAINT `fk_evalua_Asig` FOREIGN KEY (`cod_asignacion_auxiliar_fk`)
-			REFERENCES asignacion_auxiliar (`cod_asignacion_auxiliar`),
+			REFERENCES asignacion_auxiliar (`cod_asignacion_auxiliar`) ON DELETE CASCADE,
   CONSTRAINT `fk_evalua_usu` FOREIGN KEY (`usuario_fk_eva`)
 			REFERENCES usuario (`cod_usuario`) 
   );
@@ -141,7 +141,7 @@ CREATE TABLE pregunta (
   `cod_evaluacion_fk` INT  NULL,
    PRIMARY KEY (`cod_pregunta`),
   CONSTRAINT `fk_evalua` FOREIGN KEY (`cod_evaluacion_fk`)
-			REFERENCES evaluacion (`cod_evaluacion`)
+			REFERENCES evaluacion (`cod_evaluacion`) ON DELETE CASCADE
   
   );
   INSERT INTO `proyecto`.`pregunta`
@@ -167,7 +167,7 @@ CREATE TABLE foro (
   `cod_asignacion_auxiliar_fk` INT NOT NULL,
   PRIMARY KEY (`cod_foro`),
   CONSTRAINT `fk_Foro_Asignacion_auxiliar1` FOREIGN KEY (`cod_asignacion_auxiliar_fk`)
-  REFERENCES asignacion_auxiliar (`cod_asignacion_auxiliar`));
+  REFERENCES asignacion_auxiliar (`cod_asignacion_auxiliar`) ON DELETE CASCADE);
 INSERT INTO `proyecto`.`foro`
 (`nombre`,`descripcion`,`fecha`,`hora_limite`,`cod_asignacion_auxiliar_fk`)
 VALUES('Foro curso','Diseñado ','2019-08-12','23:59:00',1);
@@ -189,7 +189,7 @@ CREATE TABLE publicacion(
   CONSTRAINT `fk_resp_pu_usuario`
     FOREIGN KEY (`creador_pu_usuario`) REFERENCES usuario (`cod_usuario`),
   CONSTRAINT `fk_cod_foro_fk`
-    FOREIGN KEY (`cod_foro_fk`) REFERENCES foro (`cod_foro`));
+    FOREIGN KEY (`cod_foro_fk`) REFERENCES foro (`cod_foro`)ON DELETE CASCADE);
 INSERT INTO `proyecto`.`publicacion`
 (`comentario`,`creador_pu_usuario`,`cod_foro_fk`)
 VALUES ('Primer publicación del usuario Cesar',7,1),('Segunda publicación del usuario Cesar',7,1);
@@ -229,8 +229,11 @@ CREATE TABLE actividad (
   `ruta_archivo` varchar(350) NULL,
   `cod_asignacion_auxiliar_fk` INT NULL,
   `cod_usuario_fk` INT NULL,
-  PRIMARY KEY (`cod_actividad`),
-  CONSTRAINT `fk_Actividad` FOREIGN KEY (`cod_asignacion_auxiliar_fk`) REFERENCES asignacion_auxiliar (`cod_asignacion_auxiliar`),
+  `cod_actividad_padre` INT NULL,
+   PRIMARY KEY (`cod_actividad`),
+  CONSTRAINT `fk_Actividad` FOREIGN KEY (`cod_asignacion_auxiliar_fk`) REFERENCES asignacion_auxiliar (`cod_asignacion_auxiliar`)ON DELETE CASCADE,
+    CONSTRAINT `fk_actividad_padre`
+    FOREIGN KEY (`cod_actividad_padre`) REFERENCES actividad (`cod_actividad`),
   CONSTRAINT `fk_usuario` FOREIGN KEY (`cod_usuario_fk`) REFERENCES usuario (`cod_usuario`));
 INSERT INTO `proyecto`.`actividad`
 (`nombre`,`hora`,`fecha_limite`,`ponderacion`,`archivo`,`cod_asignacion_auxiliar_fk`,`cod_usuario_fk`)
@@ -249,7 +252,7 @@ CREATE TABLE nota (
   CONSTRAINT `fk_Nota_Usuario1`
     FOREIGN KEY (`Usuario_cod_usuario`) REFERENCES usuario(`cod_usuario`),
   CONSTRAINT `fk_Nota_Actividad1`
-    FOREIGN KEY (`Actividad_cod_actividad`) REFERENCES actividad (`cod_actividad`));
+    FOREIGN KEY (`Actividad_cod_actividad`) REFERENCES actividad (`cod_actividad`)ON DELETE CASCADE);
 
 
 -- -----------------------------------------------------
@@ -281,8 +284,8 @@ CREATE TABLE ticket (
   `cod_ticket` INT NOT NULL AUTO_INCREMENT,
   `asunto` VARCHAR(100) NULL,
   `cuerpo` VARCHAR(250) NULL, 
-  `cod_estado_fkt` INT NOT NULL,
-  `cod_usuario_fkt` INT NOT NULL,
+  `cod_estado_fkt` INT NULL,
+  `cod_usuario_fkt` INT  NULL,
   PRIMARY KEY (`cod_ticket`),
     CONSTRAINT `fkEstado`
     FOREIGN KEY (`cod_estado_fkt`) REFERENCES estado (`cod_estado`),
@@ -307,5 +310,3 @@ CREATE TABLE desasignacion (
   PRIMARY KEY (`cod_desasignacion`),
   CONSTRAINT `fk_Desasignacion_Usuario1`
     FOREIGN KEY (`cod_usuario_fk`) REFERENCES usuario (`cod_usuario`));
-
-

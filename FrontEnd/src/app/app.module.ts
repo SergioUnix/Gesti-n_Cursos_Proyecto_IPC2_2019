@@ -48,6 +48,11 @@ import { ActividadRealizarComponent } from './components/actividad-realizar/acti
 import { ActividadesCursosAsigComponent } from './components/actividades-cursos-asig/actividades-cursos-asig.component';
 import { ActividadesCrearNotaComponent } from './components/actividades-crear-nota/actividades-crear-nota.component';
 import { ActividadesVerNotasComponent } from './components/actividades-ver-notas/actividades-ver-notas.component';
+import { BusquedaAuxiliaresComponent } from './components/busqueda-auxiliares/busqueda-auxiliares.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { DesasignarAuxiliarComponent } from './components/desasignar-auxiliar/desasignar-auxiliar.component';
+import { FilterDesasignarPipe } from './pipes/filter-desasignar.pipe';
+import { MotivoComponent } from './components/motivo/motivo.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +87,12 @@ import { ActividadesVerNotasComponent } from './components/actividades-ver-notas
     ActividadRealizarComponent,
     ActividadesCursosAsigComponent,
     ActividadesCrearNotaComponent,
-    ActividadesVerNotasComponent
+    ActividadesVerNotasComponent,
+    BusquedaAuxiliaresComponent,
+    FilterPipe,
+    DesasignarAuxiliarComponent,
+    FilterDesasignarPipe,
+    MotivoComponent
   ],
   imports: [
     BrowserModule,

@@ -128,14 +128,14 @@
                     <div class="card text-center">
                         <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
                                 <i class="far fa-clock"></i><h3>Aux. {{aux.auxiliar}}</h3>
-                            <button class="btn btn-danger" >
+                            <button class="btn btn-danger" (click)="deleteAsignacion(aux.cod_asignacion_auxiliar, aux.cod_curso_fk)">
                                 Eliminar
                             </button>
                         </div>
                         <img [src]="" class="card-img-top">
                 
                         <div class="card-body">
-                            <h4>  
+                            <h4>  <p> {{aux.cod_curso_fk}} </p>
                                 <p>Curso : {{aux.curso}}</p>
                                 <p>Semestre : {{aux.semestre}}</p>
                                 <p>Año : {{aux.anio}}</p>
@@ -147,9 +147,7 @@
                                 <p>Hora Final : {{aux.hora_final}}</p>
                                 
                             </h4>
-                            <button class="btn btn-outline-success" [routerLink]="">
-                                    Editar
-                                </button>
+
 
                 
                         </div>

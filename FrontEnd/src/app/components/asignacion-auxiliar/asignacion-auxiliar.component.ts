@@ -8,7 +8,7 @@ import { UsuariosService } from 'src/app/servicios/usuarios.service';
 import { CursosService } from 'src/app/servicios/cursos.service';
 
 
-
+ 
 @Component({
   selector: 'app-asignacion-auxiliar',
   templateUrl: './asignacion-auxiliar.component.html',
@@ -148,7 +148,14 @@ cambioOcupado(codigo_curso:String){
     },
     err => console.error(err)
     );}
-
+//metodo para cambiar el estado del curso , porque ya se le asigno un auxiliar
+cambioDisponible(codigo_curso:String){
+  this.cursosService.updateDisponible(codigo_curso.toString(),"").subscribe(  /// 
+    res => {
+    console.log("cambio de estado")   ///aca almaceno la respuesta que me devuelve, y luego utilizarlo en la lista
+    },
+    err => console.error(err)
+    );}
 
 
  //Guardar Auxiliar
@@ -188,6 +195,18 @@ cambioOcupado(codigo_curso:String){
 
 
 
+
+
+
+   ///Metodo para eliminar
+   deleteAsignacion(id: string, cod_curso:string){
+    this.asigauxService.deleteAsig_aux(id).subscribe(  /// 
+      res => {    
+        this.getAsig_Aux();     //pido el meodo de pintar los juegos para que se vea el cambio a la hora de eliminar uno y desaparezca
+      this.cambioDisponible(cod_curso.toString());
+        location.reload();
+      },
+      err => console.error(err) );}
 
 
 

@@ -1,0 +1,35 @@
+<div class="container">
+        <h1>Lista de Asignaciónes para Realizar Desasignación de Auxiliar</h1>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="filterPost" placeholder="Escribir Auxiliar o Curso" [(ngModel)]="filterAsig">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>cod_asignacion</th>
+                            <th>auxiliar</th>
+                            <th>curso</th>
+                            <th>Acción</th>
+    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr  *ngFor="let asig of asig_Auxiliares | filterDesasignar:filterAsig">
+                            <td> {{asig.cod_asignacion_auxiliar}}</td>
+                            <td> {{ asig.auxiliar}}  </td>
+                            <td>  {{asig.curso}} </td>
+                            <td><button class="btn btn-outline-success" [routerLink]="['/motivo', asig.cod_asignacion_auxiliar]">
+                                Desasignación
+                            </button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

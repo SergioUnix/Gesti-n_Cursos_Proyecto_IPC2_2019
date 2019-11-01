@@ -1,0 +1,31 @@
+<div class="container">
+    <h1>Listado de Auxiliares</h1>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <input type="text" class="form-control" name="filterPost" placeholder="Search..." [(ngModel)]="filterPost">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>cod_usuario</th>
+                        <th>nombre</th>
+                        <th>carne</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let aux of usuarios | filter:filterPost">
+                        <td> {{aux.cod_usuario}}</td>
+                        <td> {{ aux.nombre}}  </td>
+                        <td>  {{aux.carne}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

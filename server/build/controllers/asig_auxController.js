@@ -31,6 +31,19 @@ class Asig_auxiliarController {
             }
         });
     }
+    ///obtengo los datos de una sola asignación
+    getAsignacion(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const arreglo = yield pool.query('SELECT * FROM proyecto.asignacion_auxiliar where cod_asignacion_auxiliar=?', [id]);
+            if (arreglo.length > 0) {
+                return res.json(arreglo[0]);
+            }
+            else {
+                res.status(404).json({ text: 'La asignacion_auxiliar no existe ' });
+            }
+        });
+    }
     // Creo uno    
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -65,6 +78,13 @@ class Asig_auxiliarController {
         return __awaiter(this, void 0, void 0, function* () {
             yield pool.query('INSERT INTO foro set ?', [req.body]);
             res.json({ message: 'Foro creado automaticamente' });
+        });
+    }
+    // Creo un motivo para la desasignacion de un auxiliar    
+    createMotivo(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield pool.query('INSERT INTO desasignacion set ?', [req.body]);
+            res.json({ message: 'Auxiliar Desasignado' });
         });
     }
 }

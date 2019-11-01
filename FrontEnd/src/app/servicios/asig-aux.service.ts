@@ -3,7 +3,7 @@ import {Asig_Aux } from 'src/app/modelos/Asig_Aux';   //importo el tipo de dato,
 import {Foro } from 'src/app/modelos/Foro';   //importo el tipo de dato,
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
+import {Motivo } from 'src/app/modelos/Motivo'; 
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,10 @@ return this.http.get(`${this.API_URI}/asig_auxiliar`);
 getAsig_aux(id: string){
 return this.http.get(`${this.API_URI}/asig_auxiliar/${id}`);
 }
+
+getAsignacion(id: string){
+  return this.http.get(`${this.API_URI}/asig_auxiliar/una/sola/asig/${id}`);
+  }
 
 //metodo para guardar 
 saveAsig_aux(curso:Asig_Aux){
@@ -53,6 +57,11 @@ createForoAsig(foro:Foro){
   return this.http.post(`${this.API_URI}/asig_auxiliar/foro_despues_asig/foro`, foro);
   
   }
+// guarda motivo para desasignar a un auxiliar
+  saveMotivo(motivo:Motivo){
+    return this.http.post(`${this.API_URI}/asig_auxiliar/motivo/asig/delete`, motivo);
+    
+    }
 
 
 }
