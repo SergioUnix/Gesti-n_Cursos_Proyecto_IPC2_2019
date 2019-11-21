@@ -61,8 +61,7 @@ export class AsignarComponent implements OnInit {
 
 ///guardar Asignación Estudiante
 
- //Guardar Auxiliar
- saveAsig(cod_asig){ 
+  saveAsig(cod_asig){ 
   const cod_usuario= this.usuariosService.getSesionCod();
 
   this.asig_estu.cod_asignacion_auxiliar_fk=cod_asig;

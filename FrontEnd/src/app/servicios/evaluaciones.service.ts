@@ -65,7 +65,14 @@ getEva_tipo2_curso(id: string){
   return this.http.get(`${this.API_URI}/evaluaciones/eva/tipo2/curso/c/c/c/c/${id}`);
   }
  
-
+  //metodo para obtener todas las evaluaciones creadas por un curso tipo Verdadero/Falso
+  getEva_tipo_orde(id: string){
+    return this.http.get(`${this.API_URI}/evaluaciones/eva/tipo1/curso/c/c/c/o/${id}`);
+    }
+  //metodo para obtener todas las evaluaciones creadas dado un cod_asignacion_auxiliar , tipo 'Selección Múltiple'
+  getEva_tipo_mat(id: string){
+    return this.http.get(`${this.API_URI}/evaluaciones/eva/tipo2/curso/c/c/c/c/o/o/${id}`);
+    }
 
 
 

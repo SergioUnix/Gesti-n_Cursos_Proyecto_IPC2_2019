@@ -59,7 +59,7 @@ class EvaluacionesController{
         if(evaluaciones.length>0){
             return res.json(evaluaciones);
         }else{
-        res.status(404).json({text:'No se encontro evaluaciones hechas por un auxiliar'});}
+        res.status(404).json({text:'No se encontro evaluaciones hechas por un auxiliar '});}
     } 
 
          // encontrar evaluaciones creadas por un auxiliar y el tipo de evaluacion es Selección Múltiple
@@ -70,7 +70,7 @@ class EvaluacionesController{
             if(evaluaciones.length>0){
                 return res.json(evaluaciones);
             }else{
-            res.status(404).json({text:'No se encontro evaluaciones hechas por un auxiliar'});}
+            res.status(404).json({text:'No se encontro evaluaciones hechas por un auxiliar '});}
         } 
 
 
@@ -82,7 +82,7 @@ class EvaluacionesController{
             if(evaluaciones.length>0){
                 return res.json(evaluaciones);
             }else{
-            res.status(404).json({text:'No se encontro evaluaciones hechas por un auxiliar'});}
+            res.status(404).json({text:'No se encontro evaluaciones hechas por un auxiliar prueba 1'});}
         } 
     
              // encontrar evaluaciones creadas Dado un Curso y tambien tipo de evaluacion Selección Múltiple
@@ -93,7 +93,31 @@ class EvaluacionesController{
                 if(evaluaciones.length>0){
                     return res.json(evaluaciones);
                 }else{
-                res.status(404).json({text:'No se encontro evaluaciones hechas por un auxiliar'});}
+                res.status(404).json({text:'No se encontro evaluaciones hechas por un auxiliar prueba 2'});}
+            } 
+
+
+
+         // encontrar evaluaciones creadas dado un Usuario auxiliar y tambien tipo de evaluacion  Ordering
+         public async getEva_tipo_orde(req: Request, res: Response ){
+    
+            const {cod}=req.params;
+            const evaluaciones = await pool.query("Select cod_evaluacion, evaluacion.nombre,evaluacion.estado, tipo_evaluacion, cod_asignacion_auxiliar_fk, usuario_fk_eva, curso.nombre as curso  ,evaluacion.orden, seccion.nombre as seccion FROM evaluacion INNER JOIN asignacion_auxiliar ON cod_asignacion_auxiliar =cod_asignacion_auxiliar_fk Inner join curso on cod_curso= cod_curso_fk Inner join seccion on cod_seccion= curso.cod_seccion_fk where usuario_fk_eva =?  and tipo_evaluacion='Ordering'", [cod]);
+            if(evaluaciones.length>0){
+                return res.json(evaluaciones);
+            }else{
+            res.status(404).json({text:'No se encontro evaluaciones hechas '});}
+        } 
+    
+             // encontrar evaluaciones creadas Dado un Usuario Auxiliar y tambien tipo de evaluacion Matching
+             public async getEva_tipo_mat(req: Request, res: Response ){
+        
+                const {cod}=req.params;
+                const evaluaciones = await pool.query("Select cod_evaluacion, evaluacion.nombre,evaluacion.estado, tipo_evaluacion, cod_asignacion_auxiliar_fk, usuario_fk_eva, curso.nombre as curso  ,evaluacion.orden, seccion.nombre as seccion FROM evaluacion INNER JOIN asignacion_auxiliar ON cod_asignacion_auxiliar =cod_asignacion_auxiliar_fk Inner join curso on cod_curso= cod_curso_fk Inner join seccion on cod_seccion= curso.cod_seccion_fk where usuario_fk_eva =?  and tipo_evaluacion='Ordering'", [cod]);
+                if(evaluaciones.length>0){
+                    return res.json(evaluaciones);
+                }else{
+                res.status(404).json({text:'No se encontro evaluaciones '});}
             } 
 
 
